@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="initial-scale=1.0, width=device-width">
+	<title>가디언테일즈 계산기</title>
+	<meta name="google-site-verification" content="aOPy39ovs9_rdSnWy_e6jFTjav4Qc56p-24P68OeIMk" />
+    <!-- 제이쿼리 모바일, 제이쿼리 라이브러리 화일 -->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript">
+		function doDisplay()
+		{
+			var con = document.getElementById("helpbox");
+			if(con.style.display =='block')
+			{
+				con.style.display='none';
+			}
+			else
+			{
+				con.style.display = 'block';
+			}
+		}
+	</script>
+</head>  
+<body>
+<!-- 시작 메뉴 화면 -->
+  <div data-role="page" id="page0">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>가디언테일즈 계산기</h1>
+		<a href="#page0" data-icon="home" data-iconpos="notext" class="ui-btn-right">Home</a>
+	</div>
+	<div data-role="content">
+			<img style="margin: 20px auto; display: block;" src="princess.png">
+		<ul data-role="listview" data-inset="true">
+			<li><a href="event_calc.php">이벤트 포인트 계산기</a></li>
+			<li><a href="evolution_calc.php">진화석 계산기</a></li>
+			<li><a href="none.php">경험치 계산기-준비중</a></li>
+			<li><a href="update_list.php">서비스 업데이트 내역</a></li>
+		</ul>
+		<div>
+			<h5 style="float:right;"><a href="javascript:doDisplay();">사용시 문제가 생겼을 경우</a></h5>
+			<div id="helpbox" class="hide" style="float:right;display: none;">
+				<br>
+				<h5>다음 페이지로 넘어가지 않거나 무한 로딩에 걸렸을 때
+				<br>
+				아래와 같이 꾹 눌러 새탭에서 열기로 사용해주세요
+				<br>
+				PC의 경우 오른쪽 마우스 버튼으로 할 수 있습니다.
+						<img style="margin: 20px auto; display: block;" src="error.jpeg">
+					
+				</h5>
+			</div>
+		</div>
+	</div>
+	<div data-role="footer" data-position="fixed" data-theme="b">
+		<h4>가디언테일즈를 플레이 하는데 도움되는 정보를 제공합니다.</h4>
+    </div>
+  </div>
+</html>  
