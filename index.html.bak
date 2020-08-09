@@ -23,13 +23,7 @@
 			}
 		}
 	</script>
-	<script>
-		var event_calcButton = document.getElementById("event_calcButton");
 
-		event_calcButton.addEventListener("click", function(){
-			window.location = './event_calc/';
-		})
-	</script>
 </head>  
 <body>
 <!-- 시작 메뉴 화면 -->
@@ -65,4 +59,12 @@
 		<h4>가디언테일즈를 플레이 하는데 도움되는 정보를 제공합니다.</h4>
     </div>
   </div>
+ </body>
+  	<script>
+		var event_calcButton = document.getElementById("event_calcButton");
+
+		event_calcButton.addEventListener("click", function(){
+			window.location = './event_calc/';
+		})
+	</script>
 </html>  
