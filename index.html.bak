@@ -64,7 +64,7 @@
 		var event_calcButton = document.getElementById("event_calcButton");
 
 		event_calcButton.addEventListener("click", function(){
-			window.location = './event_calc/';
+			window.location = './event_calc';
 		})
 	</script>
 </html>  
