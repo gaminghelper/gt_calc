@@ -24,20 +24,6 @@
 		}
 	</script>
 	<script>
-		var event_calc = document.getElementById("event_calc");
-		var evolution_calc = document.getElementById("evolution_calc");
-		//var event_calc = document.getElementById("event_calc");
-		var update_list= document.getElementById("update_list");
-
-		event_calc.addEventListener("click", function() {
-			window.location = './event_calc/';
-		})
-		evolution_calc.addEventListener("click", function() {
-			window.location = './evolution_calc/';
-		})
-		update_list.addEventListener("click", function() {
-			window.location = './update_list/';
-		})
 	</script>
 </head>  
 <body>
@@ -50,10 +36,10 @@
 	<div data-role="content">
 			<img style="margin: 20px auto; display: block;" src="princess.png">
 		<ul data-role="listview" data-inset="true">
-			<li><button id="event_calc">이벤트 포인트 계산기</button></li>
-			<li><button id="evolution_calc">진화석 계산기</button></li>
-			<li><button id="">경험치 계산기-준비중</button></li>
-			<li><button id="update_list">서비스 업데이트 내역</button></li>
+			<li><button>이벤트 포인트 계산기</button></li>
+			<li><button>진화석 계산기</button></li>
+			<li><button>경험치 계산기-준비중</button></li>
+			<li><button>서비스 업데이트 내역</button></li>
 		</ul>
 		<div>
 			<h5 style="float:right;"><a href="javascript:doDisplay();">사용시 문제가 생겼을 경우</a></h5>
