@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="euc-kr"/>
+	<meta name="viewport" content="initial-scale=1.0, width=device-width">
+	<title>이벤트 포인트 계산</title>
+        <!-- 제이쿼리 모바일, 제이쿼리 라이브러리 화일 -->
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	
+	<script>
+	function result(){
+	
+	if(grade.value==2)
+	{
+		if(level.value==70)
+		{
+			var result=parseInt(Number(num.value)/3);
+		}
+	}
+	else if(grade.value==3)
+	{
+		if(level.value==70)
+		{
+			var result=parseInt(Number(num.value)/1.3);
+		}
+	}
+
+	document.getElementById("result-panel").innerHTML =
+		"반복 횟수(기대값) : "+result
+		+"<br>예상 소모 커피량 : " + result*10
+		+"<br>자연 커피로 파밍 시 : " + parseInt(result*10/154)+"일 소요";
+	}
+	</script>
+</head>  
+<body>
+  <div data-role="page" id="page1">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-icon="back" data-rel="back">Back</a>
+		<h1>진화석 계산기</h1>
+		<a href="main.php" data-icon="home" data-iconpos="notext">Home</a>
+	</div>
+	<div data-role="content">
+		<form name="form1" method="post" enctype="multipart/form-data" action="insert_result.php" data-ajax="false"> 
+			<div class="ui-body ui-body-a">
+				<label class="select">태생 영웅 등급</label>
+				<select id="grade" data-native-menu="false" data-mini="true" data-inline="true">
+					<option value="2">★★</option>
+					<option value="3">★★★</option>
+				</select>
+				<label class="select">균열 레벨</label>
+				<select id="level" data-native-menu="false" data-mini="true" data-inline="true">
+					<option value="70">70</option>
+				</select>
+				<label>필요한 개수 : </label>
+				<input type="text" id="num" value="" data-mini="true"/>	
+            </div>
+			<div class="ui-body">
+				<fieldset class="ui-grid-a">
+					<div class="ui-block-a"><input type="reset" value="취소"/></div>
+					<div class="ui-block-b"><input type="button" value="계산" onclick="result();"/></div>
+				</fieldset>
+			</div>
+		</form> 
+		<div class="ui-body ui-body-a" id="result-panel"></div>
+	</div>
+	<div data-role="footer" data-position="fixed" data-theme="b">
+    </div>
+  </div>
+</body>
+</html>

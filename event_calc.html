@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="euc-kr"/>
+	<meta name="viewport" content="initial-scale=1.0, width=device-width">
+	<title>이벤트 포인트 계산</title>
+        <!-- 제이쿼리 모바일, 제이쿼리 라이브러리 화일 -->
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script language=javascript>
+	function getTime() {
+		now = new Date();
+		dday = new Date(2020,07,13,08,00,00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
+		days = (dday - now) / 1000 / 60 / 60 / 24;
+		dRound = Math.floor(days);
+		hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound);
+		hRound = Math.floor(hours);
+		minutes = (dday - now) / 1000 /60 - (24 * 60 * dRound) - (60 * hRound);
+		mRound = Math.floor(minutes);
+		document.getElementById("counter1").innerHTML = dRound;
+		document.getElementById("counter2").innerHTML = hRound;
+		document.getElementById("counter3").innerHTML = mRound;
+	}
+	</script>
+	<script>
+	function result(){
+	
+	var dungeon_point = Number(level.value)*(1+Number(percent.value)*0.01)
+	
+
+	var interval = eval(Number(goal_point.value) - Number(present_point.value))
+
+	var coffee=0;
+	days = (dday - now) / 1000 / 60 / 60 / 24;
+	days=Math.floor(days)+(document.getElementById("today_chk").checked?0:1);
+	
+	if(days>0){//날짜 차이가 0이 아니라면
+
+		for(var i=0;i<days;i++)
+		{
+			interval=interval-(dungeon_point*5+540+500);
+			coffee=coffee+100;
+			if(interval<0){
+				break;
+			}
+		}
+		if(interval>0)
+		{
+			var additions=parseInt(interval / (dungeon_point*5));
+			if(additions>days)
+			{
+				additions=days;
+				var reminder =  interval-additions*dungeon_point*5;
+				reminder=parseInt(reminder/100);
+			}
+			else if(additions<=days)
+			{
+				var reminder=0;
+			}
+			
+			coffee=coffee+additions*50 + reminder*10;
+		}
+	}
+	else if(days==0){
+
+	interval=interval-(dungeon_point*5);
+	coffee=coffee+50;
+		if(interval>0)
+		{
+			var additions=parseInt(interval / (dungeon_point*5));
+			if(additions>1)
+			{
+				additions=1;
+				coffee=coffee+50;
+				inverval= interval - (dungeon_point*5);
+			}
+			var reminder =  interval / (dungeon_point*5*days);
+			reminder=parseInt(reminder/100);
+			coffee=coffee+additions*50 + reminder*10;
+		}
+	}
+
+	document.getElementById("result-panel").innerHTML =
+		"예상 소모 젬(균열 초기화 비용) : "+additions*300
+		+"<br>예상 소모 커피량 : " + Number(coffee)+" / 자연 회복 커피량 : "+144*(days-1);
+	}
+	</script>
+</head>  
+<body>
+  <div data-role="page" id="page1">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-icon="back" data-rel="back">Back</a>
+		<h1>이벤트 포인트 계산기</h1>
+		<a href="main.php" data-icon="home" data-iconpos="notext">Home</a>
+	</div>
+	<div data-role="content">
+		<form name="form1" method="post" enctype="multipart/form-data" action="insert_result.php" data-ajax="false"> 
+			<h3>현재 진행중인 이벤트 : 기사 학교에 가다</h3>
+			<h5> 남은 이벤트 시간 : 
+			<DIV id=count><SPAN id=counter1></SPAN>일<SPAN id=counter2></SPAN>시간<SPAN id=counter3></SPAN>분</SPAN></div>
+			<SCRIPT>getTime()</SCRIPT>
+			</h5>
+			<div class="ui-body ui-body-a">
+				<label class="select">균열 레벨 : </label>
+				<select id="level" data-native-menu="false" data-mini="true" data-inline="true">
+					<option value="400">50</option>
+					<option value="420">60</option>
+					<option value="440">70</option>
+				</select>
+				<label class="select">오늘 균열 플레이 여부<input type="checkbox" id="today_chk" value="1"></label>
+				<label>균열 총합 퍼센트 : </label>
+				<input type="text" id="percent" value="" data-mini="true"/>
+				<label>현재 이벤트 포인트 : </label>
+				<input type="text" id="present_point" value="" data-mini="true"/>
+				<label>목표 이벤트 포인트</label>
+				<input type="text" id="goal_point" value="" data-mini="true">			
+            </div>
+			<div class="ui-body">
+				<fieldset class="ui-grid-a">
+					<div class="ui-block-a"><input type="reset" value="취소"/></div>
+					<div class="ui-block-b"><input type="button" value="계산" onclick="result();"/></div>
+				</fieldset>
+			</div>
+			<div class="ui-body ui-body-a" id="result-panel"></div>
+			<div>
+			</div>
+			<div>
+			<h4> * 이벤트 포인트 계산에서 아레나, 콜로세움, 각성석은 전부 각각 3회를 기준으로 포인트 합산됩니다.</h4>
+			</div>
+		</form> 
+	</div>
+	<div data-role="footer" data-position="fixed" data-theme="b">
+	</div>
+  </div>
+</body>
+</html>
