@@ -33,25 +33,18 @@
 		<a href="#page0" data-icon="home" data-iconpos="notext" class="ui-btn-right">Home</a>
 	</div>
 	<div data-role="content">
-			<img style="margin: 20px auto; display: block;" src="princess.png">
+			//<img style="margin: 20px auto; display: block;" src="princess.png">
 		<ul data-role="listview" data-inset="true">
 			<li><button id="event_calcButton">이벤트 포인트 계산기</button></li>
-			<li><a href="./evolution_calc">진화석 계산기</a></li>
-			<li><a>경험치 계산기-준비중</a></li>
-			<li><a href="./update_list">서비스 업데이트 내역</a></li>
+			<li><button id="evolution_calcButton">진화석 계산기</button></li>
+			<li><button>경험치 계산기-준비중</button></li>
+			<li><button id="update_listButton">서비스 업데이트 내역</button></li>
 		</ul>
 		<div>
 			<h5 style="float:right;"><a href="javascript:doDisplay();">사용시 문제가 생겼을 경우</a></h5>
 			<div id="helpbox" class="hide" style="float:right;display: none;">
 				<br>
-				<h5>다음 페이지로 넘어가지 않거나 무한 로딩에 걸렸을 때
-				<br>
-				아래와 같이 꾹 눌러 새탭에서 열기로 사용해주세요
-				<br>
-				PC의 경우 오른쪽 마우스 버튼으로 할 수 있습니다.
-						<img style="margin: 20px auto; display: block;" src="error.jpeg">
-					
-				</h5>
+				문제가 있을 시 get1ucky@naver.com 으로 문제 사항을 보내주시면 감사하겠습니다.
 			</div>
 		</div>
 	</div>
@@ -62,9 +55,17 @@
  </body>
   	<script>
 		var event_calcButton = document.getElementById("event_calcButton");
+		var evolution_calcButton = document.getElementById("evolution_calcButton");
+		var update_listButton = document.getElementById("update_listButton");
 
 		event_calcButton.addEventListener("click", function(){
 			window.location = './event_calc';
+		})
+		evolution_calcButton.addEventListener("click", function(){
+			window.location = './evolution_calc';
+		})
+		update_listButton.addEventListener("click", function(){
+			window.location = './update_list';
 		})
 	</script>
 </html>  
