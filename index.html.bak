@@ -23,6 +23,13 @@
 			}
 		}
 	</script>
+	<script>
+		var event_calc = document.getElementById("eventcalc");
+
+		event_calcButton.addEventListener("click", function(){
+			window.location = './event_calc/';
+		})
+	</script>
 </head>  
 <body>
 <!-- 시작 메뉴 화면 -->
@@ -34,7 +41,7 @@
 	<div data-role="content">
 			<img style="margin: 20px auto; display: block;" src="princess.png">
 		<ul data-role="listview" data-inset="true">
-			<li><a href="./event_calc">이벤트 포인트 계산기</a></li>
+			<li><button id="event_calc">이벤트 포인트 계산기</button></li>
 			<li><a href="./evolution_calc">진화석 계산기</a></li>
 			<li><a>경험치 계산기-준비중</a></li>
 			<li><a href="./update_list">서비스 업데이트 내역</a></li>
