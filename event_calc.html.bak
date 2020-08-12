@@ -101,7 +101,7 @@
 	document.getElementById("result-panel").innerHTML =
 		"예상 소모 젬(균열 초기화 비용) : "+additions*300
 		+"<br>예상 소모 커피량 : " + Number(coffee)+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
-		+"<br>최종 예상 포인트 : " + Number(result_point)+Number(coffee*10);
+		+"<br>최종 예상 포인트 : " + Number(result_point+coffee*10);
 	}
 	</script>
 </head>  
