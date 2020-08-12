@@ -42,7 +42,7 @@
 	days=days+(document.getElementById("today_chk").checked?0:1)
 	//var lastday=(((dday - now) / 1000 /60 - (24 * 60 * dRound) > 480)?true:false);
 	//alert(days)
-	
+	var event_dungeon_coffee=0; 
 	var result_point=Number(present_point.value);
 
 	if(days>1){//날짜 차이가 0이 아니라면
@@ -51,6 +51,7 @@
 		{
 			interval=interval-(dungeon_point*5+540+500);
 			result_point=result_point+dungeon_point*5+540+500;
+			event_dungeon_coffee=event_dungeon_coffee+50;
 			coffee=coffee+100;
 			if(interval<0){
 				break;
@@ -70,7 +71,7 @@
 			{
 				var reminder=0;
 			}
-			
+			event_dungeon_coffee=event_dungeon_coffee+additions*50;
 			coffee=coffee+additions*50 + reminder*10;
 		}
 	}
@@ -80,28 +81,43 @@
 	interval=interval-(dungeon_point*5);//일단 균열을 돌아서 남은 포인트 계산
 	result_point=result_point+dungeon_point*5;
 	coffee=coffee+50;
+	event_dungeon_coffee=event_dungeon_coffee+50;
 		if(interval>0)
 		{
-			var additions=parseInt(interval / (dungeon_point*5)); //젬을 충전해서 돌아야하는가?
+			var additions=Math.floor(interval / (dungeon_point*5)); //젬을 충전해서 돌아야하는가?
+				//alert(additions)
 
 			if(additions>1)
 			{
 				additions=1;
 				coffee=coffee+50;
-				inverval= interval - (dungeon_point*5);
+				interval= interval - (dungeon_point*5);
 				result_point=result_point+dungeon_point*5;
+				alert(coffee)
+			}
+			else 
+			{
+				additions=0;
 			}
 
-			var reminder = parseInt(interval/100);
-			coffee=coffee+additions*50 + reminder*10;
+			event_dungeon_coffee=event_dungeon_coffee+additions*50;
 		}
-	}
-	}
+		else
+		{
+			additions=0;
+		}
+		//alert(interval);
+		var reminder = parseInt(interval/100);
+		//alert(reminder);
+		coffee=coffee + reminder*10;
 
+
+	}
+	}
 	document.getElementById("result-panel").innerHTML =
 		"예상 소모 젬(균열 초기화 비용) : "+additions*300
 		+"<br>예상 소모 커피량 : " + Number(coffee)+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
-		+"<br>최종 예상 포인트 : " + Number(result_point+coffee*10);
+		+"<br>최종 예상 포인트 : " + Number(result_point+(coffee-event_dungeon_coffee)*10);
 	}
 	</script>
 </head>  

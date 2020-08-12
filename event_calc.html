@@ -84,23 +84,30 @@
 	event_dungeon_coffee=event_dungeon_coffee+50;
 		if(interval>0)
 		{
-			var additions=parseInt(interval / (dungeon_point*5)); //젬을 충전해서 돌아야하는가?
+			var additions=Math.floor(interval / (dungeon_point*5)); //젬을 충전해서 돌아야하는가?
 
 			if(additions>1)
 			{
 				additions=1;
 				coffee=coffee+50;
-				inverval= interval - (dungeon_point*5);
+				interval= interval - (dungeon_point*5);
 				result_point=result_point+dungeon_point*5;
 			}
+			else 
+			{
+				additions=0;
+			}
 
-			var reminder = parseInt(interval/100);
 			event_dungeon_coffee=event_dungeon_coffee+additions*50;
-			coffee=coffee+additions*50 + reminder*10;
 		}
+		else
+		{
+			additions=0;
+		}
+		var reminder = parseInt(interval/100);
+		coffee=coffee + reminder*10;
 	}
 	}
-
 	document.getElementById("result-panel").innerHTML =
 		"예상 소모 젬(균열 초기화 비용) : "+additions*300
 		+"<br>예상 소모 커피량 : " + Number(coffee)+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
