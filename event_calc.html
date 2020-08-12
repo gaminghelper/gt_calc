@@ -12,6 +12,7 @@
 	function getTime() {
 		now = new Date();
 		dday = new Date(2020,07,13,08,00,00); // 원하는 날짜, 시간 정확하게 초단위까지 기입.
+		//dday = new Date(2020,07,13,08,00,00); 다음 날짜 입력 
 		days = (dday - now) / 1000 / 60 / 60 / 24;
 		dRound = Math.floor(days);
 		hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound);
@@ -33,10 +34,15 @@
 
 	var coffee=0;
 	days = (dday - now) / 1000 / 60 / 60 / 24;
-	days=Math.floor(days)+(document.getElementById("today_chk").checked?0:1);
-	
 
-	if(days>0){//날짜 차이가 0이 아니라면
+	
+	//days=Math.floor(days)+(document.getElementById("today_chk").checked?0:1);
+	days= (((dday - now) / 1000 /60 - (24 * 60 * dRound) - 480)/720 <0)?
+	0:(Math.ceil(((dday - now) / 1000 /60 - (24 * 60 * dRound) -480)/720))
+	days=days+(document.getElementById("today_chk").checked?0:1)
+	//var lastday=(((dday - now) / 1000 /60 - (24 * 60 * dRound) > 480)?true:false);
+	//alert(days)
+	if(days>1){//날짜 차이가 0이 아니라면
 
 		for(var i=0;i<days;i++)
 		{
@@ -63,28 +69,31 @@
 			coffee=coffee+additions*50 + reminder*10;
 		}
 	}
-	else if(days==0){
-
-	interval=interval-(dungeon_point*5);
+	else if(days<=1){//이벤트 종료 당일
+	
+	if(days==1){//만약 기회가 남아 있다면
+	interval=interval-(dungeon_point*5);//일단 균열을 돌아서 남은 포인트 계산
 	coffee=coffee+50;
 		if(interval>0)
 		{
-			var additions=parseInt(interval / (dungeon_point*5));
+			var additions=parseInt(interval / (dungeon_point*5)); //젬을 충전해서 돌아야하는가?
+
 			if(additions>1)
 			{
 				additions=1;
 				coffee=coffee+50;
 				inverval= interval - (dungeon_point*5);
 			}
-			var reminder =  interval / (dungeon_point*5*days);
-			reminder=parseInt(reminder/100);
+
+			var reminder = parseInt(interval/100);
 			coffee=coffee+additions*50 + reminder*10;
 		}
+	}
 	}
 
 	document.getElementById("result-panel").innerHTML =
 		"예상 소모 젬(균열 초기화 비용) : "+additions*300
-		+"<br>예상 소모 커피량 : " + Number(coffee)+" / 자연 회복 커피량 : "+144*Math.floor((dday - now) / 1000 / 60 / 60 / 24);
+		+"<br>예상 소모 커피량 : " + Number(coffee)+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24));
 	}
 	</script>
 </head>  

@@ -19,12 +19,6 @@
 	<div data-role="content">
 		<form name="form1" method="post" enctype="multipart/form-data" action="insert_result.php" data-ajax="false"> 
 			<div class="ui-body ui-body-a">
-				<label class="select"><h1>2020.08.12</h1></label>	
-				<label class="select">가디언테일즈 이벤트 계산기 수정<br>
-				이벤트 계산기에서 오류가 생기는 부분 계산값이 NaN이나 잘못된 값이 나오는 부분등을 수정하였습니다.
-				</label>
-            </div>
-			<div class="ui-body ui-body-a">
 				<label class="select"><h1>2020.08.08</h1></label>	
 				<label class="select">가디언테일즈 이벤트 계산기 수정 및 무한로딩 대처법<br>
 				이벤트 계산기에서 금일 균열을 돌았는지에 대한 여부를 체크할 수 있습니다.
