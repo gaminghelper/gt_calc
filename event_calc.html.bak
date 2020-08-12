@@ -85,7 +85,6 @@
 		if(interval>0)
 		{
 			var additions=Math.floor(interval / (dungeon_point*5)); //젬을 충전해서 돌아야하는가?
-				//alert(additions)
 
 			if(additions>1)
 			{
@@ -93,7 +92,6 @@
 				coffee=coffee+50;
 				interval= interval - (dungeon_point*5);
 				result_point=result_point+dungeon_point*5;
-				alert(coffee)
 			}
 			else 
 			{
@@ -106,12 +104,8 @@
 		{
 			additions=0;
 		}
-		//alert(interval);
 		var reminder = parseInt(interval/100);
-		//alert(reminder);
 		coffee=coffee + reminder*10;
-
-
 	}
 	}
 	document.getElementById("result-panel").innerHTML =
