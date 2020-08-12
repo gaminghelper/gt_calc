@@ -86,8 +86,6 @@
 			}
 
 			var reminder = parseInt(interval/100);
-			alert(reminder)
-
 			coffee=coffee+additions*50 + reminder*10;
 		}
 	}
