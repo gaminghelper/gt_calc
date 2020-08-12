@@ -11,8 +11,8 @@
 	<script language=javascript>
 	function getTime() {
 		now = new Date();
-		dday = new Date(2020,07,13,08,00,00); // 기사학교에 가다 이벤트.
-		//dday = new Date(2020,07,27,08,00,00); //베리우드 이벤트
+		//dday = new Date(2020,07,13,08,00,00); // 기사학교에 가다 이벤트.
+		dday = new Date(2020,07,27,08,00,00); //베리우드 이벤트
 		days = (dday - now) / 1000 / 60 / 60 / 24;
 		dRound = Math.floor(days);
 		hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound);
@@ -124,8 +124,8 @@
 	</div>
 	<div data-role="content">
 		<form name="form1" method="post" enctype="multipart/form-data" action="insert_result.php" data-ajax="false"> 
-			<h3>현재 진행중인 이벤트 : 기사 학교에 가다</h3>
-			<!--<h3>현재 진행중인 이벤트 : 베리우드 </h3>-->
+			<!--<h3>현재 진행중인 이벤트 : 기사 학교에 가다</h3>-->
+			<h3>현재 진행중인 이벤트 : 베리우드 </h3>
 			<h5> 남은 이벤트 시간 : 
 			<DIV id=count><SPAN id=counter1></SPAN>일<SPAN id=counter2></SPAN>시간<SPAN id=counter3></SPAN>분</SPAN></div>
 			<SCRIPT>getTime()</SCRIPT>
