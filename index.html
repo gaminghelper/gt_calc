@@ -37,7 +37,7 @@
 		<ul data-role="listview" data-inset="true">
 			<li><button id="event_calcButton">이벤트 포인트 계산기</button></li>
 			<li><button id="evolution_calcButton">진화석 계산기</button></li>
-			<li><button>경험치 계산기-준비중</button></li>
+			<li><button id="exp_calcButton">경험치 계산기</button></li>
 			<li><button id="update_listButton">서비스 업데이트 내역</button></li>
 		</ul>
 		<div>
@@ -57,6 +57,7 @@
 		var event_calcButton = document.getElementById("event_calcButton");
 		var evolution_calcButton = document.getElementById("evolution_calcButton");
 		var update_listButton = document.getElementById("update_listButton");
+		var exp_calcButton= document.getElementById("exp_calcButton");
 
 		event_calcButton.addEventListener("click", function(){
 			window.location = './event_calc';
@@ -66,6 +67,9 @@
 		})
 		update_listButton.addEventListener("click", function(){
 			window.location = './update_list';
+		})
+		exp_calcButton.addEventListener("click", function(){
+			window.location = './exp_calc';
 		})
 	</script>
 </html>  
