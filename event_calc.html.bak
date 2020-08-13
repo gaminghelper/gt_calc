@@ -50,6 +50,7 @@
 		for(var i=0;i<days;i++)
 		{
 			interval=interval-(dungeon_point*5+540+500);
+			//alert(interval)//122340
 			result_point=result_point+dungeon_point*5+540+500;
 			event_dungeon_coffee=event_dungeon_coffee+50;
 			coffee=coffee+100;
@@ -57,23 +58,40 @@
 				break;
 			}
 		}
-		if(interval>0)
+
+		if(interval-500*days>0)
 		{
-			var additions=parseInt(interval / (dungeon_point*5));
+			var additions=Math.floor(interval / (dungeon_point*5));
+
 			if(additions>days)
 			{
 				additions=days;
-				var reminder =  interval-additions*dungeon_point*5;
-				reminder=parseInt(reminder/100);
+				interval =  interval-additions*dungeon_point*5;
+				result_point=result_point+additions*dungeon_point*5;
+				//reminder=parseInt(reminder/100);
 			}
 			else if(additions<=days)
 			{
-				var reminder=0;
-			}
-			result_point=result_point+additions*dungeon_point*5;
-
+				//alert(interval-additions*dungeon_point*5-500*(days-additions))
+				interval=interval-additions*dungeon_point*5-500*(days-additions);
+				
+				result_point=result_point+additions*dungeon_point*5+500*(days-additions);
+			}	
+			 //249 -> 97-> 46
+			var temp= interval/100;//나머지 포인트를 채우기 위해서 던전을 돌아야하는 횟수
+			temp=temp>0?Math.ceil(temp)*10:0;//실제 남은 포인트 때문에 써야하는 커피량
+			//alert(temp)
 			event_dungeon_coffee=event_dungeon_coffee+additions*50;
-			coffee=coffee+additions*50 + reminder*10;
+			coffee=coffee+additions*50 + temp;//위에서 일일 커피 100씩 다 쓰고 50씩 추가로 계산 
+			//alert(Math.ceil(reminder/100)) //249 -> 97
+			//alert(result_point) //113040
+			//alert((coffee-event_dungeon_coffee)*10)//31400
+		}
+		else
+		{
+			result_point=result_point+500*days;
+			event_dungeon_coffee=event_dungeon_coffee+50;
+			coffee=coffee+50;
 		}
 	}
 	else if(days<=1){//이벤트 종료 당일
@@ -94,6 +112,7 @@
 				interval= interval - (dungeon_point*5);
 				result_point=result_point+dungeon_point*5;
 			}
+			
 			else 
 			{
 				additions=0;
@@ -105,15 +124,16 @@
 		{
 			additions=0;
 		}
-		var reminder = parseInt(interval/100);
-		coffee=coffee + reminder*10;
+		var interval = Math.floor(interval/100);
+		coffee=coffee + interval*10;
 	}
 	}
 	
 	document.getElementById("result-panel").innerHTML =
 		"예상 소모 젬(균열 초기화 비용) : "+additions*300
-		+"<br>예상 소모 커피량 : " + Number(coffee)+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
-		+"<br>최종 예상 포인트 : " + Number(result_point+(coffee-event_dungeon_coffee)*10);
+		+"<br>예상 소모 커피량 : " + Number(coffee+event_dungeon_coffee)+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
+		+"<br>최종 예상 포인트 : " + Number(result_point+temp*10)
+		+"<br>교환비 300젬 = "+Number(Math.floor(dungeon_point*5/10))+"커피";
 	}
 	</script>
 </head>  
@@ -142,6 +162,7 @@
 				<label class="select">오늘 균열 플레이 여부<input type="checkbox" id="today_chk" value="1"></label>
 				<label>균열 총합 퍼센트 : </label>
 				<select id="percent" data-native-menu="false" data-mini="true" data-inline="true">
+					<option value="40">40</option>
 					<option value="50">50</option>
 					<option value="60">60</option>
 					<option value="70">80</option>
