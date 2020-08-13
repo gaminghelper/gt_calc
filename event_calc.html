@@ -33,20 +33,20 @@
 	var interval = eval(Number(goal_point.value) - Number(present_point.value))
 
 	var coffee=0;
-	days = (dday - now) / 1000 / 60 / 60 / 24;
+	//days = (dday - now) / 1000 / 60 / 60 / 24;
+	//alert(Math.ceil((((dday - now) / 1000 /60) -480)/720))
 
 	
 	//days=Math.floor(days)+(document.getElementById("today_chk").checked?0:1);
-	days= (((dday - now) / 1000 /60 - (24 * 60 * dRound) - 480)/720 <0)?
-	0:(Math.ceil(((dday - now) / 1000 /60 - (24 * 60 * dRound) -480)/720))
-	days=days+(document.getElementById("today_chk").checked?0:1)
+	days= ((((dday - now) / 1000 /60) - 480)/1440 <0)?
+	0:(Math.ceil((((dday - now) / 1000 /60) -480)/1440))
+	days=days+(document.getElementById("today_chk").checked?-1:0)
 	//var lastday=(((dday - now) / 1000 /60 - (24 * 60 * dRound) > 480)?true:false);
 	//alert(days)
 	var event_dungeon_coffee=0; 
 	var result_point=Number(present_point.value);
-
+	//alert(days)
 	if(days>1){//날짜 차이가 0이 아니라면
-
 		for(var i=0;i<days;i++)
 		{
 			interval=interval-(dungeon_point*5+540+500);
