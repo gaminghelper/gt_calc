@@ -42,10 +42,10 @@
 	0:(Math.ceil((((dday - now) / 1000 /60) -480)/1440))
 	days=days+(document.getElementById("today_chk").checked?-1:0)
 	//var lastday=(((dday - now) / 1000 /60 - (24 * 60 * dRound) > 480)?true:false);
-	//alert(days)
+	
 	var event_dungeon_coffee=0; 
 	var result_point=Number(present_point.value);
-	//alert(days)
+	
 	if(days>1){//날짜 차이가 0이 아니라면
 		for(var i=0;i<days;i++)
 		{
@@ -63,7 +63,6 @@
 			if(additions>days)
 			{
 				additions=days;
-				result_point=result_point+additions*dungeon_point*5;
 				var reminder =  interval-additions*dungeon_point*5;
 				reminder=parseInt(reminder/100);
 			}
@@ -71,6 +70,8 @@
 			{
 				var reminder=0;
 			}
+			result_point=result_point+additions*dungeon_point*5;
+
 			event_dungeon_coffee=event_dungeon_coffee+additions*50;
 			coffee=coffee+additions*50 + reminder*10;
 		}
@@ -108,6 +109,7 @@
 		coffee=coffee + reminder*10;
 	}
 	}
+	
 	document.getElementById("result-panel").innerHTML =
 		"예상 소모 젬(균열 초기화 비용) : "+additions*300
 		+"<br>예상 소모 커피량 : " + Number(coffee)+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
