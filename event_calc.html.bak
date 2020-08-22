@@ -55,7 +55,8 @@
 
 	var event_dungeon_coffee=0; 
 	var result_point=Number(present_point.value);
-	
+	var additions=0;
+	var temp=0;
 
 
 	if(days>1){//날짜 차이가 0이 아니라면
@@ -73,7 +74,7 @@
 
 		if(interval-500*days>0)
 		{
-			var additions=Math.floor(interval / (dungeon_point*5));
+			additions=Math.floor(interval / (dungeon_point*5));
 
 			if(additions>days)
 			{
@@ -90,7 +91,7 @@
 				result_point=result_point+additions*dungeon_point*5+500*(days-additions);
 			}	
 			 //249 -> 97-> 46
-			var temp= interval/100;//나머지 포인트를 채우기 위해서 던전을 돌아야하는 횟수
+			temp= interval/100;//나머지 포인트를 채우기 위해서 던전을 돌아야하는 횟수
 			temp=temp>0?Math.ceil(temp)*10:0;//실제 남은 포인트 때문에 써야하는 커피량
 			//alert(temp)
 			event_dungeon_coffee=event_dungeon_coffee+additions*50;
@@ -112,7 +113,7 @@
 	event_dungeon_coffee=event_dungeon_coffee+50;
 		if(interval>0)
 		{
-			var additions=Math.floor(interval / (dungeon_point*5)); //젬을 충전해서 돌아야하는가?
+			additions=Math.floor(interval / (dungeon_point*5)); //젬을 충전해서 돌아야하는가?
 
 			if(additions>1)
 			{
