@@ -180,7 +180,7 @@
 		
 		//alert(param.param_dungeon_point);
 
-		if(param.param_additions<=max_additions)
+		if(param.param_additions<max_additions)
 		{
 			
 			param.param_additions=param.param_additions+1;
