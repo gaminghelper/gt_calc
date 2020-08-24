@@ -41,15 +41,11 @@
 	var interval = eval(Number(goal_point.value) - Number(present_point.value))
 
 	var coffee=0;
-	//days = (dday - now) / 1000 / 60 / 60 / 24;
-	//alert(Math.ceil((((dday - now) / 1000 /60) -480)/720))
 
 	
-	//days=Math.floor(days)+(document.getElementById("today_chk").checked?0:1);
 	days= ((((dday - now) / 1000 /60) - 480)/1440 <0)?
 	0:(Math.ceil((((dday - now) / 1000 /60) -480)/1440))
 	days=days+(document.getElementById("today_chk").checked?-1:0)
-	//var lastday=(((dday - now) / 1000 /60 - (24 * 60 * dRound) > 480)?true:false);
 	
 	add_pvp_point =(document.getElementById("max_pvp_point_chk").checked?360:0)
 
@@ -63,7 +59,6 @@
 		for(var i=0;i<days;i++)
 		{
 			interval=interval-(dungeon_point*5+540+500+add_pvp_point);
-			//alert(interval)//122340
 			result_point=result_point+dungeon_point*5+540+500+add_pvp_point;
 			event_dungeon_coffee=event_dungeon_coffee+50;
 			coffee=coffee+100;
@@ -148,7 +143,6 @@
 		+"<br>예상 소모 커피량 : " + Number(coffee+event_dungeon_coffee)
 		+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
 		+"<br>최종 예상 포인트 : " + Number(result_point+temp*10)+"<br>"
-		//+"<br>교환비 300젬 = "+Number(Math.floor(dungeon_point*5/10))+"커피 + 포인트 500점"
 		
 
 
@@ -167,7 +161,6 @@
 			"예상 소모 젬(균열 초기화 비용) : "+param.param_additions*300
 			+"<br>예상 소모 커피량 : " + param.param_expect_coffee+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
 			+"<br>최종 예상 포인트 : " + param.param_expect_point+"<br>"
-			//+"<br>교환비 300젬 = "+Number(Math.floor(dungeon_point*5/10))+"커피 + 포인트 500점"
 		+"<div class='ui-block-a'><input type='button' value='&#128142;을 &#9749;로 교환하기' onclick='alter_zem_to_coffee();'/></div>"
 		+"<div class='ui-block-b'><input type='button' value='&#9749;를 &#128142;으로 교환하기' onclick='alter_coffee_to_zem();'/></div>";
 		}
@@ -183,7 +176,6 @@
 			"예상 소모 젬(균열 초기화 비용) : "+param.param_additions*300
 			+"<br>예상 소모 커피량 : " + param.param_expect_coffee+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
 			+"<br>최종 예상 포인트 : " + param.param_expect_point+"<br>"
-			//+"<br>교환비 300젬 = "+Number(Math.floor(dungeon_point*5/10))+"커피 + 포인트 500점"
 		+"<div class='ui-block-a'><input type='button' value='&#128142;을 &#9749;로 교환하기' onclick='alter_zem_to_coffee();'/></div>"
 		+"<div class='ui-block-b'><input type='button' value='&#9749;를 &#128142;으로 교환하기' onclick='alter_coffee_to_zem();'/></div>";
 		}
