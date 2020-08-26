@@ -54,8 +54,10 @@
 	var additions=0;
 	var temp=0;
 
+	if(days>=1 || hours>=8){//날짜 차이가 0이 아니라면
+		
+		days=days==0?1:0;//하루 이상 남았는데 days가 0이 되는 현상 방지
 
-	if(days>=1){//날짜 차이가 0이 아니라면
 		for(var i=0;i<days;i++)
 		{
 			interval=interval-(dungeon_point*5+540+500+add_pvp_point);
@@ -95,9 +97,9 @@
 			coffee=coffee+50;
 		}
 	}
-	else if(days<1){//이벤트 종료 당일
-	
-	if(document.getElementById("today_chk").checked?false:true){//만약 기회가 남아 있다면
+	else if(days<1){//이벤트 종료 당일	
+	if(document.getElementById("today_chk").checked?false:true)
+	{//만약 기회가 남아 있다면
 	interval=interval-(dungeon_point*5);//일단 균열을 돌아서 남은 포인트 계산
 	result_point=result_point+dungeon_point*5;
 	coffee=coffee+50;
