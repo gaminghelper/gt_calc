@@ -12,7 +12,8 @@
 	function getTime() {
 		now = new Date();
 		//dday = new Date(2020,07,13,08,00,00); // 기사학교에 가다 이벤트.
-		dday = new Date(2020,07,27,08,00,00); //베리우드 이벤트
+		//dday = new Date(2020,07,27,08,00,00); //베리우드 이벤트
+		dday = new Date(2020,08,10,08,00,00); //옛날옛적에
 		days = (dday - now) / 1000 / 60 / 60 / 24;
 		dRound = Math.floor(days);
 		hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound);
@@ -49,52 +50,47 @@
 	
 	add_pvp_point =(document.getElementById("max_pvp_point_chk").checked?360:0)
 
-	var event_dungeon_coffee=0; 
 	var result_point=Number(present_point.value);
 	var additions=0;
 	var temp=0;
 
 	if(days>=1 || hours>=8){//날짜 차이가 0이 아니라면
 		
-		days=days==0?1:0;//하루 이상 남았는데 days가 0이 되는 현상 방지
+		days=days+(days==0?1:0);//하루 이상 남았는데 days가 0이 되는 현상 방지
 
 		for(var i=0;i<days;i++)
 		{
-			interval=interval-(dungeon_point*5+540+500+add_pvp_point);
-			result_point=result_point+dungeon_point*5+540+500+add_pvp_point;
-			event_dungeon_coffee=event_dungeon_coffee+50;
+			interval=interval-(dungeon_point*5+540+1000+add_pvp_point);//이전 500에서 커피 소모 X 에 따른 1000으로 변경
+			result_point=result_point+dungeon_point*5+540+1000+add_pvp_point;
 			coffee=coffee+100;
 			if(interval<0){
 				break;
 			}
 		}
 
-		if(interval-500*days>0)//남은 날 동안 균열 초기화 안하고 돌았을 경우 포인트가 모자르다면
+		if(interval>0)//남은 날 동안 균열 초기화 안하고 돌았을 경우 포인트가 모자르다면
 		{
 			additions=Math.floor(interval / (dungeon_point*5));
-
+			
 			if(additions>days)
 			{
 				additions=days;
-				interval =  interval-additions*dungeon_point*5;
+				interval = interval-additions*dungeon_point*5;
 				result_point=result_point+additions*dungeon_point*5;
 			}
 			else if(additions<=days)
 			{
-				interval=interval-additions*dungeon_point*5-500*(days-additions);
+				interval=interval-additions*dungeon_point*5;
 				
-				result_point=result_point+additions*dungeon_point*5+500*(days-additions);
+				result_point=result_point+additions*dungeon_point*5;
 			}	
 			temp= interval/100;//나머지 포인트를 채우기 위해서 던전을 돌아야하는 횟수
 			temp=temp>0?Math.ceil(temp)*10:0;//실제 남은 포인트 때문에 써야하는 커피량
-			event_dungeon_coffee=event_dungeon_coffee+additions*50;
-			coffee=coffee+additions*50 + temp;//위에서 일일 커피 100씩 다 쓰고 50씩 추가로 계산 
+			coffee=coffee+temp;//위에서 일일 커피 100씩 다 쓰고 50씩 추가로 계산 
 		}
 		else
 		{
 			result_point=result_point+500*days;
-			event_dungeon_coffee=event_dungeon_coffee+50;
-			coffee=coffee+50;
 		}
 	}
 	else if(days<1){//이벤트 종료 당일	
@@ -103,7 +99,6 @@
 	interval=interval-(dungeon_point*5);//일단 균열을 돌아서 남은 포인트 계산
 	result_point=result_point+dungeon_point*5;
 	coffee=coffee+50;
-	event_dungeon_coffee=event_dungeon_coffee+50;
 		if(interval>0)
 		{
 			if(interval-500>0)//젬을 충전해서 돌아야하는가?
@@ -118,7 +113,6 @@
 				additions=0;
 			}
 
-			event_dungeon_coffee=event_dungeon_coffee+additions*50;
 		}
 		else
 		{
@@ -131,7 +125,7 @@
 	
 	param={
 			param_additions : additions,
-			param_expect_coffee : Number(coffee+event_dungeon_coffee),
+			param_expect_coffee : Number(coffee),
 			param_expect_point : Number(result_point+temp*10),
 			param_dungeon_point : Number(Math.floor(dungeon_point*5*0.01))*10
 	};
@@ -140,7 +134,7 @@
 
 	document.getElementById("result-panel").innerHTML =
 		"예상 소모 젬(균열 초기화 비용) : "+additions*300
-		+"<br>예상 소모 커피량 : " + Number(coffee+event_dungeon_coffee)
+		+"<br>예상 소모 커피량 : " + Number(coffee)
 		+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
 		+"<br>최종 예상 포인트 : " + Number(result_point+temp*10)+"<br>"
 		
@@ -192,7 +186,8 @@
 	<div data-role="content">
 		<form name="form1" method="post" enctype="multipart/form-data" action="insert_result.php" data-ajax="false"> 
 			<!--<h3>현재 진행중인 이벤트 : 기사 학교에 가다</h3>-->
-			<h3>현재 진행중인 이벤트 : 베리우드 </h3>
+			<!--<h3>현재 진행중인 이벤트 : 베리우드 </h3>-->
+			<h3>현재 진행중인 이벤트 : 옛날옛적에</h3>
 			<h5> 남은 이벤트 시간 : 
 			<DIV id=count><SPAN id=counter1></SPAN>일<SPAN id=counter2></SPAN>시간<SPAN id=counter3></SPAN>분</SPAN></div>
 			<SCRIPT>getTime()</SCRIPT>
