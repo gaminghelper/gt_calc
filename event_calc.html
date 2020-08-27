@@ -148,9 +148,8 @@
 		
 		if(param.param_additions>0)
 		{
-			
 			param.param_additions=param.param_additions-1;
-			param.param_expect_coffee = param.param_expect_coffee-50+param.param_dungeon_point;
+			param.param_expect_coffee = param.param_expect_coffee+param.param_dungeon_point;
 			document.getElementById("result-panel").innerHTML =
 			"예상 소모 젬(균열 초기화 비용) : "+param.param_additions*300
 			+"<br>예상 소모 커피량 : " + param.param_expect_coffee+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
@@ -165,7 +164,7 @@
 		{
 			
 			param.param_additions=param.param_additions+1;
-			param.param_expect_coffee = param.param_expect_coffee+50-param.param_dungeon_point;
+			param.param_expect_coffee = param.param_expect_coffee-param.param_dungeon_point;
 			document.getElementById("result-panel").innerHTML =
 			"예상 소모 젬(균열 초기화 비용) : "+param.param_additions*300
 			+"<br>예상 소모 커피량 : " + param.param_expect_coffee+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))

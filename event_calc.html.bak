@@ -50,7 +50,6 @@
 	
 	add_pvp_point =(document.getElementById("max_pvp_point_chk").checked?360:0)
 
-	//var event_dungeon_coffee=0; 
 	var result_point=Number(present_point.value);
 	var additions=0;
 	var temp=0;
@@ -63,7 +62,6 @@
 		{
 			interval=interval-(dungeon_point*5+540+1000+add_pvp_point);//이전 500에서 커피 소모 X 에 따른 1000으로 변경
 			result_point=result_point+dungeon_point*5+540+1000+add_pvp_point;
-			//event_dungeon_coffee=event_dungeon_coffee+50;
 			coffee=coffee+100;
 			if(interval<0){
 				break;
@@ -88,14 +86,11 @@
 			}	
 			temp= interval/100;//나머지 포인트를 채우기 위해서 던전을 돌아야하는 횟수
 			temp=temp>0?Math.ceil(temp)*10:0;//실제 남은 포인트 때문에 써야하는 커피량
-			//event_dungeon_coffee=event_dungeon_coffee+additions*50;
 			coffee=coffee+temp;//위에서 일일 커피 100씩 다 쓰고 50씩 추가로 계산 
 		}
 		else
 		{
 			result_point=result_point+500*days;
-			//event_dungeon_coffee=event_dungeon_coffee+50;
-			//coffee=coffee+50;
 		}
 	}
 	else if(days<1){//이벤트 종료 당일	
@@ -104,7 +99,6 @@
 	interval=interval-(dungeon_point*5);//일단 균열을 돌아서 남은 포인트 계산
 	result_point=result_point+dungeon_point*5;
 	coffee=coffee+50;
-	//event_dungeon_coffee=event_dungeon_coffee+50;
 		if(interval>0)
 		{
 			if(interval-500>0)//젬을 충전해서 돌아야하는가?
@@ -119,7 +113,6 @@
 				additions=0;
 			}
 
-			//event_dungeon_coffee=event_dungeon_coffee+additions*50;
 		}
 		else
 		{
