@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="euc-kr"/>
+	<meta name="viewport" content="initial-scale=1.0, width=device-width">
+	<title>바리 계산</title>
+        <!-- 제이쿼리 모바일, 제이쿼리 라이브러리 화일 -->
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	
+	<script>
+	function result(){
+	
+	var exp = new Array(
+	100,
+	200,
+	300,
+	400,
+	500,
+	600,
+	700,
+	800,
+	99100,
+	96100,
+	108700,
+	111800,
+	122400,
+	133000,
+	136800,
+	289200,
+	355500,
+	421800,
+	488100,
+	554400);
+	
+	
+
+	var level=Number(present_level.value)-1
+	var goal = Number(goal_level.value)-1
+	
+	var present_exp=exp[level]*Number(percent.value)*0.01
+
+	var result_exp=0;
+	
+	for(level; level<goal;level++)
+	{
+		result_exp=result_exp+exp[level] 
+	}
+	
+
+	document.getElementById("result-panel").innerHTML =
+		"필요 경험치량 : " +Number(result_exp-present_exp)+
+		"<br>경험치 던전 : "+Math.ceil(Number(result_exp-present_exp)/28242)+"회(LV70기준)"+ 
+		"<br>진화석 균열 : "+Math.ceil(Number(result_exp-present_exp)/5706)+"회(LV70기준)";
+		
+		//+"<br>예상 소모 커피량 : " + result*10
+		//+"<br>자연 커피로 파밍 시 : " + parseInt(result*10/154)+"일 소요";
+	}
+	</script>
+</head>  
+<body>
+  <div data-role="page" id="page1">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-icon="back" data-rel="back">Back</a>
+		<h1>바리 계산기</h1>
+		<a href="main.php" data-icon="home" data-iconpos="notext">Home</a>
+	</div>
+	<div data-role="content">
+		<form name="form1" method="post" enctype="multipart/form-data" action="insert_result.php" data-ajax="false"> 
+			<div class="ui-body ui-body-a">
+    <table frame=void>
+	<th></th>
+	<th>바리</th>
+	<th>방어측</th>
+	<tr><!-- 첫번째 줄 시작 -->
+	    <td><label>캐릭터 선택 : </label></td>
+	    <td></td>
+		<td><select id="percent" data-native-menu="false" data-mini="true" data-inline="true">
+					<option value="40">마리나</option>
+					<option value="40">플리트비체</option>
+					<option value="50">비슈바크</option>
+					<option value="60">바리</option>
+					<option value="70">티니아</option>
+					<option value="80">라피스</option>
+					<option value="90">유진</option>
+					<option value="110">아라벨</option>
+					<option value="110">루피나</option>
+					<option value="110">아이돌 에바</option>
+					<option value="110">란</option>
+					<option value="110">나리</option>
+				</select></td>
+	</tr><!-- 첫번째 줄 끝 -->
+	<tr><!-- 두번째 줄 시작 -->
+	    <td><label>진화 단계 : </label></td>
+	    <td><select id="bari_star" data-native-menu="false" data-mini="true" data-inline="true">
+					<option value="40">★★★★★</option>
+				</select></td>
+		<td><select id="defender_star" data-native-menu="false" data-mini="true" data-inline="true">
+					<option value="40">★★★★★</option>
+				</select></td>
+				
+	</tr><!-- 두번째 줄 끝 -->
+		<tr><!-- 세번째 줄 시작 -->
+	    <td><label>레벨 : </label></td>
+		<td><select id="percent" data-native-menu="false" data-mini="true" data-inline="true">
+					<option value="68">68</option>
+					<option value="63">63</option>
+				</select></td>
+		<td><select id="percent" data-native-menu="false" data-mini="true" data-inline="true">
+					<option value="68">68</option>
+					<option value="63">63</option>
+				</select></td>
+	</tr><!-- 세번째 줄 끝 -->
+	<tr><!-- 세번째 줄 시작 -->
+	    <td><label>캐릭터 기본 사항 : </label></td>
+	    <td>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="1레벨 공격력"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="각성 공격력"/>
+		</td>
+		 <td>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="각성 방어력 증가"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="각성 체력 증가"/>
+		</td>
+	</tr><!-- 세번째 줄 끝 -->
+
+	<tr><!-- 네번째 줄 시작 -->
+	    <td><label>파티 버프 사항 : </label></td>
+	    <td>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="(파티)원거리 공격력 증가"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="(파티)지속성 공격력 증가"/>
+		</td>
+		 <td>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="(파티)체력 증가"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="(파티)방어력 증가"/>
+		</td>
+	</tr><!-- 네번째 줄 끝 -->
+	<tr><!-- 다섯번째 줄 시작 -->
+	    <td><label>장비 버프 사항 : </label></td>
+	    <td>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="무기 공격력"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="악세 공격력"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="카드 공격력"/>
+		</td>
+		 <td>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="무기 방어력"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="무기 방어력 증가(%)"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="무기 체력 증가(%)"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="악세 방어"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="악세 방어력 증가(%)"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="악세 체력 증가(%)"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="방패 방어력"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="방패 체력 증가(%)"/>
+		<input type="text" id="percent" value="" data-mini="true" placeholder="카드 방어력"/>
+		</td>
+	</tr><!-- 다섯번째 줄 끝 -->
+	<tr><!-- 여섯섯번째 줄 시작 -->
+	    <td><label>추가 세부 사항 : </label></td>
+	    <td>
+			<input type="text" id="percent" value="" data-mini="true" placeholder="영웅 지식 공격력"/>
+			<input type="text" id="percent" value="" data-mini="true" placeholder="장비 지식 공격력"/>
+			<input type="text" id="percent" value="" data-mini="true" placeholder="무기 지식 공격력"/>
+			<input type="text" id="percent" value="" data-mini="true" placeholder="카드 지식 공격력"/>
+			<input type="text" id="percent" value="" data-mini="true" placeholder="부유성 건물 공격력"/>
+		</td>
+		 <td>
+			<input type="text" id="percent" value="" data-mini="true" placeholder="부유성 건물 체력"/>
+			<input type="text" id="percent" value="" data-mini="true" placeholder="영웅 지식 체력"/>
+			<input type="text" id="percent" value="" data-mini="true" placeholder="영웅 지식 방어력"/>
+			<input type="text" id="percent" value="" data-mini="true" placeholder="장비 지식 방어력"/>
+			<input type="text" id="percent" value="" data-mini="true" placeholder="코스튬 체력"/>
+		</td>
+	</tr><!-- 다섯번째 줄 끝 -->
+
+    </table>
+            </div>
+			<div class="ui-body">
+				<fieldset class="ui-grid-a">
+					<div class="ui-block-a"><input type="reset" value="취소"/></div>
+					<div class="ui-block-b"><input type="button" value="계산" onclick="result();"/></div>
+				</fieldset>
+			</div>
+		</form> 
+		<div class="ui-body ui-body-a" id="result-panel"></div>
+	</div>
+	<div data-role="footer" data-position="fixed" data-theme="b">
+    </div>
+  </div>
+</body>
+</html>

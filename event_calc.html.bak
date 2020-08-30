@@ -46,13 +46,15 @@
 	
 	days= ((((dday - now) / 1000 /60) - 480)/1440 <0)?
 	0:(Math.ceil((((dday - now) / 1000 /60) -480)/1440))
-	days=days+(document.getElementById("today_chk").checked?-1:0)
+	days=days+(document.getElementById("today_chk").checked?0:1)
 	
 	add_pvp_point =(document.getElementById("max_pvp_point_chk").checked?480:0)
 
 	var result_point=Number(present_point.value);
 	var additions=0;
 	var temp=0;
+	
+	alert(days);
 
 	if(days>=1 || hours>=8){//날짜 차이가 0이 아니라면
 		
@@ -60,13 +62,17 @@
 
 		for(var i=0;i<days;i++)
 		{
-			interval=interval-(dungeon_point*5+540+1000+add_pvp_point);//이전 500에서 커피 소모 X 에 따른 1000으로 변경
-			result_point=result_point+dungeon_point*5+540+1000+add_pvp_point;
-			coffee=coffee+100;
+			interval=interval-(dungeon_point*5+540+1500+add_pvp_point);//이전 500에서 커피 소모 X 에 따른 1500으로 변경
+			result_point=result_point+dungeon_point*5+540+1500+add_pvp_point;
+			coffee=coffee+150;
 			if(interval<0){
 				break;
 			}
 		}
+		interval=interval+(540+1500+add_pvp_point)-180;//이전 500에서 커피 소모 X 에 따른 1500으로 변경
+		result_point=result_point-(540+1500+add_pvp_point)+180;	
+
+		alert(interval+"   :    "+result_point)
 
 		if(interval>0)//남은 날 동안 균열 초기화 안하고 돌았을 경우 포인트가 모자르다면
 		{
@@ -80,18 +86,18 @@
 			}
 			else if(additions<=days)
 			{
-				interval=interval-additions*dungeon_point*5;
-				
+				interval=interval-additions*dungeon_point*5;		
 				result_point=result_point+additions*dungeon_point*5;
-			}	
+			}
+		alert(interval+"   :    "+result_point)
+
 			temp= interval/100;//나머지 포인트를 채우기 위해서 던전을 돌아야하는 횟수
+			alert(interval+"   :    "+temp+"   :    "+result_point)
 			temp=temp>0?Math.ceil(temp)*10:0;//실제 남은 포인트 때문에 써야하는 커피량
-			coffee=coffee+temp;//위에서 일일 커피 100씩 다 쓰고 50씩 추가로 계산 
+			coffee=coffee+temp;
 		}
-		else
-		{
-			result_point=result_point+500*days;
-		}
+		alert(interval+"   :    "+result_point)
+
 	}
 	else if(days<1){//이벤트 종료 당일	
 	if(document.getElementById("today_chk").checked?false:true)
@@ -136,6 +142,7 @@
 	day_coffee = day_coffee >0 ? day_coffee : 0;
 	var day_coffee_str = document.getElementById("today_chk").checked?"(오늘 제외)":"(오늘 포함)"
 	document.getElementById("result-panel").innerHTML =
+		
 		"예상 소모 젬(균열 초기화 비용) : "+additions*300
 		+"<br>예상 소모 커피량 : " + Number(coffee)
 		+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
