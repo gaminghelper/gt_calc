@@ -86,14 +86,11 @@
 				interval=interval-additions*dungeon_point*5;		
 				result_point=result_point+additions*dungeon_point*5;
 			}
-		alert(interval+"   :    "+result_point)
 
 			temp= interval/100;//나머지 포인트를 채우기 위해서 던전을 돌아야하는 횟수
-			alert(interval+"   :    "+temp+"   :    "+result_point)
 			temp=temp>0?Math.ceil(temp)*10:0;//실제 남은 포인트 때문에 써야하는 커피량
 			coffee=coffee+temp;
 		}
-		alert(interval+"   :    "+result_point)
 
 	}
 	else if(days<1){//이벤트 종료 당일	
