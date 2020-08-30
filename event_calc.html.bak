@@ -54,7 +54,6 @@
 	var additions=0;
 	var temp=0;
 	
-	alert(days);
 
 	if(days>=1 || hours>=8){//날짜 차이가 0이 아니라면
 		
@@ -71,8 +70,6 @@
 		}
 		interval=interval+(540+1500+add_pvp_point)-180;//이전 500에서 커피 소모 X 에 따른 1500으로 변경
 		result_point=result_point-(540+1500+add_pvp_point)+180;	
-
-		alert(interval+"   :    "+result_point)
 
 		if(interval>0)//남은 날 동안 균열 초기화 안하고 돌았을 경우 포인트가 모자르다면
 		{
