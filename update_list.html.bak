@@ -18,11 +18,6 @@
 	</div>
 	<div data-role="content">
 		<form name="form1" method="post" enctype="multipart/form-data" action="insert_result.php" data-ajax="false"> 
-				<label class="select"><h1>2020.08.30</h1></label>	
-				<label class="select">이벤트 계산 수정 및 추가<br>
-				이벤트 계산기에서 PVP 최대 포인트 옵션에서 하루 콜로세움 횟수를 7회에서 9회로 수정하였습니다.<br>
-				또한 하루에 충전해야하는 커피량 항목을 추가하였습니다.
-				</label>
 			<div class="ui-body ui-body-a">
 				<label class="select"><h1>2020.08.30</h1></label>	
 				<label class="select">이벤트 계산 수정<br>

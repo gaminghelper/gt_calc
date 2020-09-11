@@ -13,7 +13,9 @@
 		now = new Date();
 		//dday = new Date(2020,07,13,08,00,00); // 기사학교에 가다 이벤트.
 		//dday = new Date(2020,07,27,08,00,00); //베리우드 이벤트
-		dday = new Date(2020,08,10,08,00,00); //옛날옛적에
+		//dday = new Date(2020,08,10,08,00,00); //옛날옛적에
+		dday = new Date(2020,08,24,08,00,00); //라제국
+		
 		days = (dday - now) / 1000 / 60 / 60 / 24;
 		dRound = Math.floor(days);
 		hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound);
@@ -137,7 +139,7 @@
 	var day_coffee_str = document.getElementById("today_chk").checked?"(오늘 제외)":"(오늘 포함)"
 	document.getElementById("result-panel").innerHTML =
 		
-		"예상 소모 젬(균열 초기화 비용) : "+additions*300
+		"예상 소모 젬(이벤트 균열 초기화 비용) : "+additions*300
 		+"<br>예상 소모 커피량 : " + Number(coffee)
 		+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
 		+"<br>하루에 충전해야하는 커피량" +day_coffee_str+ " : "+day_coffee
@@ -166,7 +168,7 @@
 			day_coffee = day_coffee >0 ? day_coffee : 0;
 
 			document.getElementById("result-panel").innerHTML =
-			"예상 소모 젬(균열 초기화 비용) : "+param.param_additions*300
+			"예상 소모 젬(이벤트 균열 초기화 비용) : "+param.param_additions*300
 			+"<br>예상 소모 커피량 : " + param.param_expect_coffee+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
 			+"<br>하루에 충전해야하는 커피량"+day_coffee_str+ " : "+day_coffee
 			+"<br>최종 예상 포인트 : " + param.param_expect_point+"<br>"
@@ -191,7 +193,7 @@
 
 
 			document.getElementById("result-panel").innerHTML =
-			"예상 소모 젬(균열 초기화 비용) : "+param.param_additions*300
+			"예상 소모 젬(이벤트 균열 초기화 비용) : "+param.param_additions*300
 			+"<br>예상 소모 커피량 : " + param.param_expect_coffee+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
 			+"<br>하루에 충전해야하는 커피량"+day_coffee_str+ " : "+day_coffee
 			+"<br>최종 예상 포인트 : " + param.param_expect_point+"<br>"
@@ -212,11 +214,11 @@
 		<form name="form1" method="post" enctype="multipart/form-data" action="insert_result.php" data-ajax="false"> 
 			<!--<h3>현재 진행중인 이벤트 : 기사 학교에 가다</h3>-->
 			<!--<h3>현재 진행중인 이벤트 : 베리우드 </h3>-->
-			<h3>현재 진행중인 이벤트 : 옛날옛적에</h3>
+			<!--<h3>현재 진행중인 이벤트 : 옛날옛적에</h3>-->
+			<h3>현재 진행중인 이벤트 : 라제국</h3>
 			<h5> 남은 이벤트 시간 : 
-			<!--
-			<DIV id=count><SPAN id=counter1></SPAN>일<SPAN id=counter2></SPAN>시간<SPAN id=counter3></SPAN>분</SPAN></div>-->
-			<div>이벤트 종료</div>
+			<DIV id=count><SPAN id=counter1></SPAN>일<SPAN id=counter2></SPAN>시간<SPAN id=counter3></SPAN>분</SPAN></div>
+			<!--<div>이벤트 종료</div>-->
 			<SCRIPT>getTime()</SCRIPT>
 			</h5>
 			<div class="ui-body ui-body-a">
@@ -257,7 +259,7 @@
 			</div>
 			<div>
 			
-			<h4> * 이벤트 포인트 계산에서 아레나, 콜로세움, 각성석은 전부 각각 3회 일반 던전 15회를 기준으로 포인트(1860)가 하루 단위로 합산됩니다.</h4>
+			<h4> * 이벤트 포인트 계산에서 아레나, 콜로세움, 각성석은 전부 각각 3회 일반 던전 15회를 기준으로 포인트(2040)가 하루 단위로 합산됩니다.</h4>
 			<h4> * (PVP 최대 포인트 옵션)을 선택하시면 아레나 5회 콜로세움 9회를 기준으로 계산됩니다.</h4>
 			<h4> * 이벤트 마지막 날은 일일 포인트는 180점(각성석 3회)으로 계산됩니다.</h4>
 			<h4> * 푸쉬나 이벤트로 들어온 커피 등은 계산에 포함되지 않습니다. </h4>
