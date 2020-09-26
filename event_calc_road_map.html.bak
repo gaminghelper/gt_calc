@@ -189,7 +189,7 @@
 			document.getElementById("result-panel").innerHTML =
 			"필요한 포인트 : "+need_point+"<br/>"+
 			"자연 회복 커피량 : "+day_coffee+"<br/>"+
-			"하루에 충전해야하는 커피량 : "+Math.floor(((need_point-day_coffee))*0.166667 /days) +"(푸쉬나 젬 이벤트 등으로 충전해야하는 커피량)";
+			"하루에 충전해야하는 커피량 : "+Math.floor(((need_point*0.0125-day_coffee))/days) +"(푸쉬나 젬 이벤트 등으로 충전해야하는 커피량)";
 			memory_point=temp;
 	
 	
@@ -248,9 +248,9 @@
 			<div>
 			</div>
 <style type="text/css">
-    .img_coffee{
+.img_coffee{
         position: relative;
-        background-image: url(/images/coffee.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/coffee.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -267,7 +267,7 @@
     }
 	.img_normal_evol_stone{
         position: relative;
-        background-image: url(/images/normal_evol_stone.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/normal_evol_stone.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -284,7 +284,7 @@
     }
 	.img_basics_evol_box{
         position: relative;
-        background-image: url(/images/basics_evol_box.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/basics_evol_box.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -301,7 +301,7 @@
     }
 	.img_exp{
         position: relative;
-        background-image: url(/images/exp.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/exp.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -318,7 +318,7 @@
     }
 	.img_gold{
         position: relative;
-        background-image: url(/images/gold.jpg);                                                 
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/gold.jpg);                                                 
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -333,7 +333,7 @@
     }
 	.img_gold_sword{
         position: relative;
-        background-image: url(/images/gold_sword.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/gold_sword.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -350,7 +350,7 @@
     }
 	.img_hamer{
         position: relative;
-        background-image: url(/images/hamer.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/hamer.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -367,7 +367,7 @@
     }
 	.img_hero_crystal{
         position: relative;
-        background-image: url(/images/hero_crystal.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/hero_crystal.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -384,7 +384,7 @@
     }
 	.img_high_def_stone{
         position: relative;
-        background-image: url(/images/high_def_stone.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/high_def_stone.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -401,7 +401,7 @@
     }
 	.img_high_dream_stone{
         position: relative;
-        background-image: url(/images/high_dream_stone.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/high_dream_stone.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -418,7 +418,7 @@
     }
 	.img_high_HP_stone{
         position: relative;
-        background-image: url(/images/high_HP_stone.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/high_HP_stone.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -435,7 +435,7 @@
     }
 	.img_legend_stone{
         position: relative;
-        background-image: url(/images/legend_stone.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/legend_stone.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -452,7 +452,7 @@
     }
 	.img_low_def_stone{
         position: relative;
-        background-image: url(/images/low_def_stone.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/low_def_stone.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -469,7 +469,7 @@
     }
 	.img_low_dream_strone{
         position: relative;
-        background-image: url(/images/low_dream_strone.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/low_dream_strone.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -486,7 +486,7 @@
     }
 	.img_low_HP_stone{
         position: relative;
-        background-image: url(/images/low_HP_stone.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/low_HP_stone.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -503,7 +503,7 @@
     }
 	.img_marina{
         position: relative;
-        background-image: url(/images/marina.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/marina.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -520,7 +520,7 @@
     }
 	.img_middle_def_stone{
         position: relative;
-        background-image: url(/images/middle_def_stone.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/middle_def_stone.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -537,7 +537,7 @@
     }
 	.img_middle_dream_stone{
         position: relative;
-        background-image: url(/images/middle_dream_stone.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/middle_dream_stone.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -554,7 +554,7 @@
     }
 	.img_middle_HP_stone{
         position: relative;
-        background-image: url(/images/middle_HP_stone.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/middle_HP_stone.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -571,7 +571,7 @@
     }
 	.img_ogma{
         position: relative;
-        background-image: url(/images/ogma.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/ogma.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -588,7 +588,7 @@
     }
 	.img_option_change_stone{
         position: relative;
-        background-image: url(/images/option_change_stone.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/option_change_stone.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -605,7 +605,7 @@
     }
 	.img_star{
         position: relative;
-        background-image: url(/images/star.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/star.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
@@ -622,7 +622,7 @@
     }
 	.img_zem{
         position: relative;
-        background-image: url(/images/zem.jpg);                                                               
+        background-image: url(https://gaminghelper.github.io/gt_calc/images/zem.jpg);                                                               
         height: 5vh;
 		width: 5vh;
         background-size: cover;
