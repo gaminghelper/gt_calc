@@ -8,14 +8,15 @@
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
 	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	
 	<script language=javascript>
 	function getTime() {
 		now = new Date();
 		//dday = new Date(2020,07,13,08,00,00); // 기사학교에 가다 이벤트.
 		//dday = new Date(2020,07,27,08,00,00); //베리우드 이벤트
 		//dday = new Date(2020,08,10,08,00,00); //옛날옛적에
-		dday = new Date(2020,08,24,08,00,00); //라제국
-		
+		//dday = new Date(2020,08,24,08,00,00); //라제국
+		dday = new Date(2020,09,8,08,00,00); 
 		days = (dday - now) / 1000 / 60 / 60 / 24;
 		dRound = Math.floor(days);
 		hours = (dday - now) / 1000 / 60 / 60 - (24 * dRound);
@@ -28,6 +29,7 @@
 	}
 	</script>
 	<script>
+	var memory_point=0;
 	var param={
 			param_additions : 0,
 			param_expect_coffee : 0,
@@ -36,170 +38,168 @@
 	};
 	var max_additions=0;
 
-	function result(){
-	
-	var dungeon_point = Number(level.value)*(1+Number(percent.value)*0.01)
-	
-
-	var interval = eval(Number(goal_point.value) - Number(present_point.value))
-
-	var coffee=0;
-
-	
+	function result_present_point(){
 	days= ((((dday - now) / 1000 /60) - 480)/1440 <0)?
 	0:(Math.ceil((((dday - now) / 1000 /60) -480)/1440))
 	days=days+(document.getElementById("today_chk").checked?0:1)
-	
-	add_pvp_point =(document.getElementById("max_pvp_point_chk").checked?480:0)
 
-	var result_point=Number(present_point.value);
-	var additions=0;
-	var temp=0;
-	
 
 	if(days>=1 || hours>=8){//날짜 차이가 0이 아니라면
 		
 		days=days+(days==0?1:0);//하루 이상 남았는데 days가 0이 되는 현상 방지
 
-		for(var i=0;i<days;i++)
-		{
-			interval=interval-(dungeon_point*5+540+1500+add_pvp_point);//이전 500에서 커피 소모 X 에 따른 1500으로 변경
-			result_point=result_point+dungeon_point*5+540+1500+add_pvp_point;
-			coffee=coffee+150;
-			if(interval<0){
-				break;
-			}
-		}
-		interval=interval+(540+1500+add_pvp_point)-180;//이전 500에서 커피 소모 X 에 따른 1500으로 변경
-		result_point=result_point-(540+1500+add_pvp_point)+180;	
-
-		if(interval>0)//남은 날 동안 균열 초기화 안하고 돌았을 경우 포인트가 모자르다면
-		{
-			additions=Math.floor(interval / (dungeon_point*5));
+	}
+	
+			memory_point=memory_point+(document.getElementById("cell_0").checked?100:0)
+			memory_point=memory_point+(document.getElementById("cell_1").checked?150:0)
+			memory_point=memory_point+(document.getElementById("cell_2").checked?200:0)
+			memory_point=memory_point+(document.getElementById("cell_3").checked?250:0)
+			memory_point=memory_point+(document.getElementById("cell_4").checked?300:0)
+			memory_point=memory_point+(document.getElementById("cell_5_0_0").checked?350:0)
+			memory_point=memory_point+(document.getElementById("cell_5_1_0").checked?350:0)
+			memory_point=memory_point+(document.getElementById("cell_5_0_1").checked?1600:0)
+			memory_point=memory_point+(document.getElementById("cell_5_1_1").checked?400:0)
+			memory_point=memory_point+(document.getElementById("cell_5_0_2").checked?450:0)
+			memory_point=memory_point+(document.getElementById("cell_5_1_2").checked?1600:0)
+			memory_point=memory_point+(document.getElementById("cell_6").checked?500:0)
+			memory_point=memory_point+(document.getElementById("cell_7_0_0").checked?550:0)
+			memory_point=memory_point+(document.getElementById("cell_7_1_0").checked?550:0)
+			memory_point=memory_point+(document.getElementById("cell_7_0_1").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_7_1_1").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_8_0_0").checked?650:0)
+			memory_point=memory_point+(document.getElementById("cell_8_1_0").checked?1300:0)
+			memory_point=memory_point+(document.getElementById("cell_8_2_0").checked?1300:0)
+			memory_point=memory_point+(document.getElementById("cell_8_3_0").checked?650:0)
+			memory_point=memory_point+(document.getElementById("cell_8_0_1").checked?700:0)
+			memory_point=memory_point+(document.getElementById("cell_8_1_1").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_8_3_1").checked?700:0)
+			memory_point=memory_point+(document.getElementById("cell_8_0_2").checked?900:0)
+			memory_point=memory_point+(document.getElementById("cell_8_1_2").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_8_3_2").checked?900:0)
+			memory_point=memory_point+(document.getElementById("cell_8_0_3").checked?1800:0)
+			memory_point=memory_point+(document.getElementById("cell_8_1_3").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_8_3_3").checked?1800:0)
+			memory_point=memory_point+(document.getElementById("cell_8_0_4").checked?2700:0)
+			memory_point=memory_point+(document.getElementById("cell_8_1_4").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_8_3_4").checked?1800:0)
+			memory_point=memory_point+(document.getElementById("cell_9").checked?900:0)
+			memory_point=memory_point+(document.getElementById("cell_10_0_0").checked?1900:0)
+			memory_point=memory_point+(document.getElementById("cell_10_1_0").checked?1900:0)
+			memory_point=memory_point+(document.getElementById("cell_11").checked?1000:0)
+			memory_point=memory_point+(document.getElementById("cell_12").checked?2100:0)
+			memory_point=memory_point+(document.getElementById("cell_13_0_0").checked?1100:0)
+			memory_point=memory_point+(document.getElementById("cell_13_1_0").checked?1100:0)
+			memory_point=memory_point+(document.getElementById("cell_14_0_0").checked?1150:0)
+			memory_point=memory_point+(document.getElementById("cell_14_1_0").checked?1150:0)
+			memory_point=memory_point+(document.getElementById("cell_14_2_0").checked?900:0)
+			memory_point=memory_point+(document.getElementById("cell_14_3_0").checked?1150:0)
+			memory_point=memory_point+(document.getElementById("cell_14_0_1").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_14_1_1").checked?900:0)
+			memory_point=memory_point+(document.getElementById("cell_14_2_1").checked?1800:0)
+			memory_point=memory_point+(document.getElementById("cell_14_3_1").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_14_0_2").checked?1250:0)
+			memory_point=memory_point+(document.getElementById("cell_14_1_2").checked?1800:0)
+			memory_point=memory_point+(document.getElementById("cell_14_2_2").checked?2700:0)
+			memory_point=memory_point+(document.getElementById("cell_14_3_2").checked?1250:0)
+			memory_point=memory_point+(document.getElementById("cell_14_0_3").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_14_1_3").checked?2700:0)
+			memory_point=memory_point+(document.getElementById("cell_14_2_3").checked?3600:0)
+			memory_point=memory_point+(document.getElementById("cell_14_1_4").checked?3600:0)
 			
-			if(additions>days)
-			{
-				additions=days;
-				interval = interval-additions*dungeon_point*5;
-				result_point=result_point+additions*dungeon_point*5;
-			}
-			else if(additions<=days)
-			{
-				interval=interval-additions*dungeon_point*5;		
-				result_point=result_point+additions*dungeon_point*5;
-			}
-
-			temp= interval/100;//나머지 포인트를 채우기 위해서 던전을 돌아야하는 횟수
-			temp=temp>0?Math.ceil(temp)*10:0;//실제 남은 포인트 때문에 써야하는 커피량
-			coffee=coffee+temp;
-		}
-
-	}
-	else if(days<1){//이벤트 종료 당일	
-	if(document.getElementById("today_chk").checked?false:true)
-	{//만약 기회가 남아 있다면
-	interval=interval-(dungeon_point*5);//일단 균열을 돌아서 남은 포인트 계산
-	result_point=result_point+dungeon_point*5;
-	coffee=coffee+50;
-		if(interval>0)
-		{
-			if(interval-500>0)//젬을 충전해서 돌아야하는가?
-			{
-				additions=1;
-				coffee=coffee+50;
-				interval= interval - (dungeon_point*5);
-				result_point=result_point+dungeon_point*5;
-			}
-			else 
-			{
-				additions=0;
-			}
-
-		}
-		else
-		{
-			additions=0;
-		}
-		var interval = Math.floor(interval/100);
-		coffee=coffee + interval*10;
-	}
-	}
-	param={
-			param_additions : additions,
-			param_expect_coffee : Number(coffee),
-			param_expect_point : Number(result_point+temp*10),
-			param_dungeon_point : Number(Math.floor(dungeon_point*5*0.01))*10,
-			param_days : days
-	};
-
-	max_additions=additions;
-
-	var day_coffee=Math.floor((Number(coffee)-Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24)))/days)
-	day_coffee = day_coffee >0 ? day_coffee : 0;
-	var day_coffee_str = document.getElementById("today_chk").checked?"(오늘 제외)":"(오늘 포함)"
-	document.getElementById("result-panel").innerHTML =
-		
-		"예상 소모 젬(이벤트 균열 초기화 비용) : "+additions*300
-		+"<br>예상 소모 커피량 : " + Number(coffee)
-		+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
-		+"<br>하루에 충전해야하는 커피량" +day_coffee_str+ " : "+day_coffee
-		+"<br>최종 예상 포인트 : " + Number(result_point+temp*10)+"<br>"
-		
-
-
-		+"<div class='ui-block-a'><input type='button' value='&#128142;을 &#9749;로 교환하기' onclick='alter_zem_to_coffee();'/></div>"
-		+"<div class='ui-block-b'><input type='button' value='&#9749;를 &#128142;으로 교환하기' onclick='alter_coffee_to_zem();'/></div>";
-	}
-	function alter_zem_to_coffee() {
-		
-	var day_coffee_str = document.getElementById("today_chk").checked?"(오늘 제외)":"(오늘 포함)"
-
-
-		if(param.param_additions>0)
-		{
-
-
-
-
-			param.param_additions=param.param_additions-1;
-			param.param_expect_coffee = param.param_expect_coffee+param.param_dungeon_point;
-
-			var day_coffee=Math.floor((param.param_expect_coffee-Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24)))/param.param_days)
-			day_coffee = day_coffee >0 ? day_coffee : 0;
+			memory_point=memory_point+Number(present_point.value)
 
 			document.getElementById("result-panel").innerHTML =
-			"예상 소모 젬(이벤트 균열 초기화 비용) : "+param.param_additions*300
-			+"<br>예상 소모 커피량 : " + param.param_expect_coffee+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
-			+"<br>하루에 충전해야하는 커피량"+day_coffee_str+ " : "+day_coffee
-			+"<br>최종 예상 포인트 : " + param.param_expect_point+"<br>"
-		+"<div class='ui-block-a'><input type='button' value='&#128142;을 &#9749;로 교환하기' onclick='alter_zem_to_coffee();'/></div>"
-		+"<div class='ui-block-b'><input type='button' value='&#9749;를 &#128142;으로 교환하기' onclick='alter_coffee_to_zem();'/></div>";
-		}
+				"현재까지 총 환산 포인트 : "+memory_point
 	}
-	function alter_coffee_to_zem() {
+	
+	
+	
+	function result_cal_point(){
+	
+	
+	days= ((((dday - now) / 1000 /60) - 480)/1440 <0)?
+	0:(Math.ceil((((dday - now) / 1000 /60) -480)/1440))
+	days=days+(document.getElementById("today_chk").checked?0:1)
+
+
+	if(days>=1 || hours>=8){//날짜 차이가 0이 아니라면
 		
-	var day_coffee_str = document.getElementById("today_chk").checked?"(오늘 제외)":"(오늘 포함)"
+		days=days+(days==0?1:0);//하루 이상 남았는데 days가 0이 되는 현상 방지
 
-
-		if(param.param_additions<max_additions)
-		{
-
-
-			param.param_additions=param.param_additions+1;
-			param.param_expect_coffee = param.param_expect_coffee-param.param_dungeon_point;
-
-			var day_coffee=Math.floor((param.param_expect_coffee-Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24)))/param.param_days)
-			day_coffee = day_coffee >0 ? day_coffee : 0;
-
-
-			document.getElementById("result-panel").innerHTML =
-			"예상 소모 젬(이벤트 균열 초기화 비용) : "+param.param_additions*300
-			+"<br>예상 소모 커피량 : " + param.param_expect_coffee+" / 자연 회복 커피량 : "+Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
-			+"<br>하루에 충전해야하는 커피량"+day_coffee_str+ " : "+day_coffee
-			+"<br>최종 예상 포인트 : " + param.param_expect_point+"<br>"
-		+"<div class='ui-block-a'><input type='button' value='&#128142;을 &#9749;로 교환하기' onclick='alter_zem_to_coffee();'/></div>"
-		+"<div class='ui-block-b'><input type='button' value='&#9749;를 &#128142;으로 교환하기' onclick='alter_coffee_to_zem();'/></div>";
 		}
+
+			var temp=memory_point
+			memory_point=memory_point+(document.getElementById("cell_0").checked?100:0)
+			memory_point=memory_point+(document.getElementById("cell_1").checked?150:0)
+			memory_point=memory_point+(document.getElementById("cell_2").checked?200:0)
+			memory_point=memory_point+(document.getElementById("cell_3").checked?250:0)
+			memory_point=memory_point+(document.getElementById("cell_4").checked?300:0)
+			memory_point=memory_point+(document.getElementById("cell_5_0_0").checked?350:0)
+			memory_point=memory_point+(document.getElementById("cell_5_1_0").checked?350:0)
+			memory_point=memory_point+(document.getElementById("cell_5_0_1").checked?1600:0)
+			memory_point=memory_point+(document.getElementById("cell_5_1_1").checked?400:0)
+			memory_point=memory_point+(document.getElementById("cell_5_0_2").checked?450:0)
+			memory_point=memory_point+(document.getElementById("cell_5_1_2").checked?1600:0)
+			memory_point=memory_point+(document.getElementById("cell_6").checked?500:0)
+			memory_point=memory_point+(document.getElementById("cell_7_0_0").checked?550:0)
+			memory_point=memory_point+(document.getElementById("cell_7_1_0").checked?550:0)
+			memory_point=memory_point+(document.getElementById("cell_7_0_1").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_7_1_1").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_8_0_0").checked?650:0)
+			memory_point=memory_point+(document.getElementById("cell_8_1_0").checked?1300:0)
+			memory_point=memory_point+(document.getElementById("cell_8_2_0").checked?1300:0)
+			memory_point=memory_point+(document.getElementById("cell_8_3_0").checked?650:0)
+			memory_point=memory_point+(document.getElementById("cell_8_0_1").checked?700:0)
+			memory_point=memory_point+(document.getElementById("cell_8_1_1").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_8_3_1").checked?700:0)
+			memory_point=memory_point+(document.getElementById("cell_8_0_2").checked?900:0)
+			memory_point=memory_point+(document.getElementById("cell_8_1_2").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_8_3_2").checked?900:0)
+			memory_point=memory_point+(document.getElementById("cell_8_0_3").checked?1800:0)
+			memory_point=memory_point+(document.getElementById("cell_8_1_3").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_8_3_3").checked?1800:0)
+			memory_point=memory_point+(document.getElementById("cell_8_0_4").checked?2700:0)
+			memory_point=memory_point+(document.getElementById("cell_8_1_4").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_8_3_4").checked?1800:0)
+			memory_point=memory_point+(document.getElementById("cell_9").checked?900:0)
+			memory_point=memory_point+(document.getElementById("cell_10_0_0").checked?1900:0)
+			memory_point=memory_point+(document.getElementById("cell_10_1_0").checked?1900:0)
+			memory_point=memory_point+(document.getElementById("cell_11").checked?1000:0)
+			memory_point=memory_point+(document.getElementById("cell_12").checked?2100:0)
+			memory_point=memory_point+(document.getElementById("cell_13_0_0").checked?1100:0)
+			memory_point=memory_point+(document.getElementById("cell_13_1_0").checked?1100:0)
+			memory_point=memory_point+(document.getElementById("cell_14_0_0").checked?1150:0)
+			memory_point=memory_point+(document.getElementById("cell_14_1_0").checked?1150:0)
+			memory_point=memory_point+(document.getElementById("cell_14_2_0").checked?900:0)
+			memory_point=memory_point+(document.getElementById("cell_14_3_0").checked?1150:0)
+			memory_point=memory_point+(document.getElementById("cell_14_0_1").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_14_1_1").checked?900:0)
+			memory_point=memory_point+(document.getElementById("cell_14_2_1").checked?1800:0)
+			memory_point=memory_point+(document.getElementById("cell_14_3_1").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_14_0_2").checked?1250:0)
+			memory_point=memory_point+(document.getElementById("cell_14_1_2").checked?1800:0)
+			memory_point=memory_point+(document.getElementById("cell_14_2_2").checked?2700:0)
+			memory_point=memory_point+(document.getElementById("cell_14_3_2").checked?1250:0)
+			memory_point=memory_point+(document.getElementById("cell_14_0_3").checked?1200:0)
+			memory_point=memory_point+(document.getElementById("cell_14_1_3").checked?2700:0)
+			memory_point=memory_point+(document.getElementById("cell_14_2_3").checked?3600:0)
+			memory_point=memory_point+(document.getElementById("cell_14_1_4").checked?3600:0)
+			var day_coffee=Math.floor(144*((dday - now) / 1000 / 60 / 60 / 24))
+			need_point=(memory_point-temp-(300+9*60+180)*days);
+			document.getElementById("result-panel").innerHTML =
+			"필요한 포인트 : "+need_point+"<br/>"+
+			"자연 회복 커피량 : "+day_coffee+"<br/>"+
+			"하루에 충전해야하는 커피량 : "+Math.floor(((need_point-day_coffee))*0.166667 /days) +"(푸쉬나 젬 이벤트 등으로 충전해야하는 커피량)";
+			memory_point=temp;
+	
+	
+	}
+
+	function option2(e) {
+		document.querySelector("input[id=cell_0]").addEventListener("change",function(e){ e.preventDefault();
+		var list = document.querySelectorAll("input[id=cell_1]");
+		list.checked=this.checked;
+		});
 	}
 	</script>
 </head>  
@@ -215,59 +215,1253 @@
 			<!--<h3>현재 진행중인 이벤트 : 기사 학교에 가다</h3>-->
 			<!--<h3>현재 진행중인 이벤트 : 베리우드 </h3>-->
 			<!--<h3>현재 진행중인 이벤트 : 옛날옛적에</h3>-->
-			<h3>현재 진행중인 이벤트 : 라제국</h3>
+			<h3>현재 진행중인 이벤트 : 메카 워리어</h3>
 			<h5> 남은 이벤트 시간 : 
-			<!--<DIV id=count><SPAN id=counter1></SPAN>일<SPAN id=counter2></SPAN>시간<SPAN id=counter3></SPAN>분</SPAN></div>-->
-			<div>이벤트 종료 : 로드맵 이벤트 구현이 복잡하여 26일 업데이트 될 예정입니다.</div>
+			<DIV id=count><SPAN id=counter1></SPAN>일<SPAN id=counter2></SPAN>시간<SPAN id=counter3></SPAN>분</SPAN></div>
+			<!--<div>이벤트 종료 : 로드맵 이벤트 구현이 복잡하여 26일 업데이트 될 예정입니다.</div>-->
 			<SCRIPT>getTime()</SCRIPT>
 			</h5>
 			<div class="ui-body ui-body-a">
-				<label class="select">균열 레벨 : </label>
-				<select id="level" data-native-menu="false" data-mini="true" data-inline="true">
-					<option value="400">50</option>
-					<option value="420">60</option>
-					<option value="440">70</option>
-				</select>
-				
-				<label>균열 총합 퍼센트 : </label>
-				<select id="percent" data-native-menu="false" data-mini="true" data-inline="true">
-					<option value="40">20</option>
-					<option value="40">40</option>
-					<option value="50">50</option>
-					<option value="60">60</option>
-					<option value="70">70</option>
-					<option value="80">80</option>
-					<option value="90">90</option>
-					<option value="110">110</option>
-				</select>
-				<label class="select">오늘 균열 플레이 여부<input type="checkbox" id="today_chk" value="1"></label>
-				<label class="select">PVP 최대 포인트<input type="checkbox" id="max_pvp_point_chk" value="1"></label>
-				
-				<label>현재 이벤트 포인트 : </label>
-				<input type="text" id="present_point" value="" data-mini="true"/>
-				<label>목표 이벤트 포인트</label>
-				<input type="text" id="goal_point" value="" data-mini="true">			
-            </div>
+			<div>
+			<h4> * 먼저 현재 이벤트 포인트를 입력하고 아래 로드맵에서 현재까지받은 보상을 선택한뒤 (현재 포인트 계산)을 눌러주세요.</h4>
+			<h4> * 다음 앞으로 획득하고 싶은 보상을 로드맵에서 추가적으로 선택하고 (이벤트 포인트 계산)을 눌러주세요.</h4>
+			</div>
+			<label>현재 이벤트 포인트 : </label>
+			<input type="text" id="present_point" value="" data-mini="true"/>
+			<label class="select">오늘 PVP 및 각성석 던전 플레이 여부<input type="checkbox" id="today_chk" value="1"></label>
+
+
+
 			<div class="ui-body">
 				<fieldset class="ui-grid-a">
-					<div class="ui-block-a"><input type="reset" value="취소"/></div>
-					<div class="ui-block-b"><input type="button" value="계산" onclick="result();"/></div>
+					<div class="ui-block-a"><input type="button" value="현재 포인트 계산" onclick="result_present_point();"/></div>
+					<div class="ui-block-b"><input type="button" value="이벤트 포인트 계산" onclick="result_cal_point();"/></div>
+					<div class="ui-block-b"><input type="reset" value="리셋"/></div>
 				</fieldset>
+				<!--<fieldset class="ui-grid-a">
+				<label>빠른 선택 메뉴</label>
+					<div class="ui-block-a"><input type="button" value="마리나 진화석 모두 선택" onclick="option1();"/></div>
+					<div class="ui-block-b"><input type="button" value="오그마 진화석 모두 선택" onclick="option2();"/></div>
+				</fieldset>-->
 			</div>
 			<div class="ui-body ui-body-a" id="result-panel"></div>
 			<div>
 			</div>
-			<div>
-			
-			<h4> * 이벤트 포인트 계산에서 아레나, 콜로세움, 각성석은 전부 각각 3회 일반 던전 15회를 기준으로 포인트(2040)가 하루 단위로 합산됩니다.</h4>
-			<h4> * (PVP 최대 포인트 옵션)을 선택하시면 아레나 5회 콜로세움 9회를 기준으로 계산됩니다.</h4>
-			<h4> * 이벤트 마지막 날은 일일 포인트는 180점(각성석 3회)으로 계산됩니다.</h4>
-			<h4> * 푸쉬나 이벤트로 들어온 커피 등은 계산에 포함되지 않습니다. </h4>
-			<h4> * 예상소모커피량-자연회복커피량=충전해야되는 커피량입니다.</h4>
-			<h4> * (하루에 충전해야하는 커피량)은 커피 구매나 푸쉬 등으로 보충해야하는 커피량입니다.</h4>
-			<h4> * 남은 기간동안 무조건 균열을 5번 돌고 남은 기간 얻을 수 있는 던전, 아레나, 콜로세움, 각성석 포인트를 전부 합산 후에도
-			 포인트가 모자르면 추가 젬을 소모하는 계산 방식입니다.</h4>
-			</div>
+<style type="text/css">
+    .img_coffee{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/coffee.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	    .img_coffee .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_normal_evol_stone{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/normal_evol_stone.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_normal_evol_stone .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_basics_evol_box{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/basics_evol_box.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_basics_evol_box .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_exp{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/exp.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_exp .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_gold{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/gold.jpg);                                                 
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_gold .content{
+         position: absolute;
+		 left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         text-align: center;
+    }
+	.img_gold_sword{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/gold_sword.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_gold_sword .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_hamer{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/hamer.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_hamer .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_hero_crystal{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/hero_crystal.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_hero_crystal .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_high_def_stone{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/high_def_stone.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_high_def_stone .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_high_dream_stone{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/high_dream_stone.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_high_dream_stone .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_high_HP_stone{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/high_HP_stone.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_high_HP_stone .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_legend_stone{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/legend_stone.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_legend_stone .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_low_def_stone{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/low_def_stone.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_low_def_stone .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_low_dream_strone{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/low_dream_strone.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_low_dream_strone .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_low_HP_stone{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/low_HP_stone.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_low_HP_stone .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_marina{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/marina.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_marina .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_middle_def_stone{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/middle_def_stone.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_middle_def_stone .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_middle_dream_stone{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/middle_dream_stone.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_middle_dream_stone .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_middle_HP_stone{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/middle_HP_stone.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_middle_HP_stone .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_ogma{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/ogma.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_ogma .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_option_change_stone{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/option_change_stone.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_option_change_stone .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_star{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/star.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_star .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img_zem{
+        position: relative;
+        background-image: url(file:///C:/Users/psh/Documents/GitHub/gt_calc/images/zem.jpg);                                                               
+        height: 5vh;
+		width: 5vh;
+        background-size: cover;
+    }
+	.img_zem .content{
+         position: absolute;
+         
+         left:50%;
+         transform: translate(-50%, -50%);                                                                   
+         font-size:1rem;
+         color: #086A87;
+         z-index: 5;
+         text-align: center;
+    }
+	.img-cover{
+       position: absolute;
+       height: 10%;
+       width: 10%;
+       background-color: rgba(0, 0, 0, 0.7);                                                                 
+       z-index:1;
+    }
+
+
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-8koo{background-color:#cbcefb;border-color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-8jgo{border-color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-olp2{background-color:#9698ed;border-color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-wk8r{background-color:#ffffff;border-color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-i5bc{background-color:#fae6a2;border-color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-jxkc{background-color:#96fffb;border-color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-krke{background-color:#38fff8;border-color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-7rbb{background-color:#fd6864;border-color:#ffffff;text-align:center;vertical-align:top}
+</style>
+<table class="tg" style="undefined;table-layout: fixed; width: 500px">
+<colgroup>
+<col style="width: 100px">
+<col style="width: 100px">
+<col style="width: 100px">
+<col style="width: 100px">
+</colgroup>
+<thead>
+  <tr>
+    <th class="tg-8jgo"></th>
+    <th class="tg-i5bc" colspan="2">
+	<fieldset>
+    <input id ="cell_0" type="checkbox">
+	<label for="cell_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_0.click()}">
+	<div class="img_zem">
+        <div class="content">
+            50
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+</th>
+    <th class="tg-8jgo"></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-8jgo"></td>
+    <td class="tg-i5bc" colspan="2">
+	<fieldset>
+    <input id ="cell_1" type="checkbox">
+	<label for="cell_1" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_1.click()}">
+	<div class="img_gold">
+        <div class="content">
+            20000
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-8jgo"></td>
+  </tr>
+  <tr>
+    <td class="tg-8jgo"></td>
+    <td class="tg-i5bc" colspan="2">
+	<fieldset>
+    <input id ="cell_2" type="checkbox">
+	<label for="cell_2" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_2.click()}">
+	<div class="img_exp">
+        <div class="content">
+            40000
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-8jgo"></td>
+  </tr>
+  <tr>
+    <td class="tg-8jgo"></td>
+    <td class="tg-i5bc" colspan="2">
+	<fieldset>
+    <input id ="cell_3" type="checkbox">
+	<label for="cell_3" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_3.click()}">
+	<div class="img_coffee">
+        <div class="content">
+            50
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+    <td class="tg-8jgo"></td>
+  </tr>
+  <tr>
+    <td class="tg-8jgo"></td>
+    <td class="tg-i5bc" colspan="2">
+	<fieldset>
+    <input id ="cell_4" type="checkbox">
+	<label for="cell_4" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_4.click()}">
+	<div class="img_zem">
+        <div class="content">
+            200
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>	
+	</td>
+    <td class="tg-8jgo"></td>
+  </tr>
+  <tr>
+    <td class="tg-8koo" colspan="2">
+	<fieldset>
+    <input id ="cell_5_0_0" type="checkbox">
+	<label for="cell_5_0_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_5_0_0.click()}">
+	<div class="img_normal_evol_stone">
+        <div class="content">
+		40
+		</div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-jxkc" colspan="2">
+	<fieldset>
+    <input id ="cell_5_1_0" type="checkbox">
+	<label for="cell_5_1_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_5_1_0.click()}">
+	<div class="img_hamer">
+        <div class="content">
+		LV25
+		</div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>	
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-8koo" colspan="2">
+	<fieldset>
+    <input id ="cell_5_0_1" type="checkbox">
+	<label for="cell_5_0_1" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_5_0_1.click()}">
+	<div class="img_basics_evol_box">
+        <div class="content">
+            1
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>	
+	</td>
+    <td class="tg-jxkc" colspan="2">
+	<fieldset>
+    <input id ="cell_5_1_1" type="checkbox">
+	<label for="cell_5_1_1" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_5_1_1.click()}">
+	<div class="img_star">
+        <div class="content">
+            2
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>	
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-8koo" colspan="2">
+	<fieldset>
+    <input id ="cell_5_0_2" type="checkbox">
+	<label for="cell_5_0_2" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_5_0_2.click()}">
+	<div class="img_basics_evol_box">
+        <div class="content">
+            1
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>		
+	</td>
+    <td class="tg-jxkc" colspan="2">
+	<fieldset>
+    <input id ="cell_5_1_2" type="checkbox">
+	<label for="cell_5_1_2" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_5_1_2.click()}">
+	<div class="img_hamer">
+        <div class="content">
+            LV30
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>		
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-8jgo"></td>
+    <td class="tg-i5bc" colspan="2">
+	<fieldset>
+    <input id ="cell_6" type="checkbox">
+	<label for="cell_6" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_6.click()}">
+	<div class="img_zem">
+        <div class="content">
+            300
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>		
+	</td>
+    <td class="tg-8jgo"></td>
+  </tr>
+  <tr>
+    <td class="tg-8koo" colspan="2">
+	<fieldset>
+    <input id ="cell_7_0_0" type="checkbox">
+	<label for="cell_7_0_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_7_0_0.click()}">
+	<div class="img_low_def_stone">
+        <div class="content">
+            100
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>	
+	</td>
+    <td class="tg-jxkc" colspan="2">
+	<fieldset>
+    <input id ="cell_7_1_0" type="checkbox">
+	<label for="cell_7_1_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_7_1_0.click()}">
+	<div class="img_low_HP_stone">
+        <div class="content">
+            100
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>		
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-8koo" colspan="2">
+	<fieldset>
+    <input id ="cell_7_0_1" type="checkbox">
+	<label for="cell_7_0_1" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_7_0_1.click()}">
+	<div class="img_exp">
+        <div class="content">
+            240000
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>		
+	</td>
+    <td class="tg-jxkc" colspan="2">
+	<fieldset>
+    <input id ="cell_7_1_1" type="checkbox">
+	<label for="cell_7_1_1" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_7_1_1.click()}">
+	<div class="img_gold">
+        <div class="content">
+            120000
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-8koo">
+	<fieldset>
+    <input id ="cell_8_0_0" type="checkbox">
+	<label for="cell_8_0_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_0_0.click()}">
+	<div class="img_middle_def_stone">
+        <div class="content">
+            60
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-i5bc">
+	<fieldset>
+    <input id ="cell_8_1_0" type="checkbox">
+	<label for="cell_8_1_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_1_0.click()}">
+	<div class="img_gold_sword">
+        <div class="content">
+            LV30
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-i5bc">
+	<fieldset>
+    <input id ="cell_8_2_0" type="checkbox">
+	<label for="cell_8_2_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_2_0.click()}">
+	<div class="img_option_change_stone">
+        <div class="content">
+            3
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-jxkc">
+		<fieldset>
+    <input id ="cell_8_3_0" type="checkbox">
+	<label for="cell_8_3_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_3_0.click()}">
+	<div class="img_middle_HP_stone">
+        <div class="content">
+            60
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-8koo">
+	<fieldset>
+    <input id ="cell_8_0_1" type="checkbox">
+	<label for="cell_8_0_1" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_0_1.click()}">
+	<div class="img_high_def_stone">
+        <div class="content">
+            30
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-i5bc" colspan="2">
+	<fieldset>
+    <input id ="cell_8_1_1" type="checkbox">
+	<label for="cell_8_1_1" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_1_1.click()}">
+	<div class="img_hero_crystal">
+        <div class="content">
+             6
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-jxkc">
+	<fieldset>
+    <input id ="cell_8_3_1" type="checkbox">
+	<label for="cell_8_3_1" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_3_1.click()}">
+	<div class="img_high_HP_stone">
+        <div class="content">
+            30
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-8koo">
+	<fieldset>
+    <input id ="cell_8_0_2" type="checkbox">
+	<label for="cell_8_0_2" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_0_2.click()}">
+	<div class="img_ogma">
+        <div class="content">
+            10
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-i5bc" colspan="2">
+	<fieldset>
+    <input id ="cell_8_1_2" type="checkbox">
+	<label for="cell_8_1_2" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_1_2.click()}">
+	<div class="img_hero_crystal">
+        <div class="content">
+             6
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-jxkc">
+	<fieldset>
+    <input id ="cell_8_3_2" type="checkbox">
+	<label for="cell_8_3_2" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_3_2.click()}">
+	<div class="img_marina">
+        <div class="content">
+            10
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-8koo">
+	<fieldset>
+    <input id ="cell_8_0_3" type="checkbox">
+	<label for="cell_8_0_3" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_0_3.click()}">
+	<div class="img_ogma">
+        <div class="content">
+            20
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-i5bc" colspan="2">
+	<fieldset>
+    <input id ="cell_8_1_3" type="checkbox">
+	<label for="cell_8_1_3" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_1_3.click()}">
+	<div class="img_hero_crystal">
+        <div class="content">
+            6
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-jxkc">
+	<fieldset>
+    <input id ="cell_8_3_3" type="checkbox">
+	<label for="cell_8_3_3" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_3_3.click()}">
+	<div class="img_marina">
+        <div class="content">
+            20
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-8koo">
+	<fieldset>
+    <input id ="cell_8_0_4" type="checkbox">
+	<label for="cell_8_0_4" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_0_4.click()}">
+	<div class="img_ogma">
+        <div class="content">
+            30
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-i5bc" colspan="2">
+	<fieldset>
+    <input id ="cell_8_1_4" type="checkbox">
+	<label for="cell_8_1_4" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_1_4.click()}">
+	<div class="img_hero_crystal">
+        <div class="content">
+            6
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-jxkc">
+	<fieldset>
+    <input id ="cell_8_3_4" type="checkbox">
+	<label for="cell_8_3_4" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_8_3_4.click()}">
+	<div class="img_marina">
+        <div class="content">
+            30
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-8jgo"></td>
+    <td class="tg-i5bc" colspan="2">
+	<fieldset>
+    <input id ="cell_9" type="checkbox">
+	<label for="cell_9" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_9.click()}">
+	<div class="img_hamer">
+        <div class="content">
+            LV35
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-8jgo"></td>
+  </tr>
+  <tr>
+    <td class="tg-8koo" colspan="2">
+	<fieldset>
+    <input id ="cell_10_0_0" type="checkbox">
+	<label for="cell_10_0_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_10_0_0.click()}">
+	<div class="img_exp">
+        <div class="content">
+            280000
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-jxkc" colspan="2">
+	<fieldset>
+    <input id ="cell_10_1_0" type="checkbox">
+	<label for="cell_10_1_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_10_1_0.click()}">
+	<div class="img_gold">
+        <div class="content">
+            140000
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-wk8r"></td>
+    <td class="tg-i5bc" colspan="2">
+	<fieldset>
+    <input id ="cell_11" type="checkbox">
+	<label for="cell_11" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_11.click()}">
+	<div class="img_coffee">
+        <div class="content">
+            50
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-wk8r"></td>
+  </tr>
+  <tr>
+    <td class="tg-wk8r"></td>
+    <td class="tg-i5bc" colspan="2">
+	<fieldset>
+    <input id ="cell_12" type="checkbox">
+	<label for="cell_12" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_12.click()}">
+	<div class="img_star">
+        <div class="content">
+            4
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-wk8r"></td>
+  </tr>
+  <tr>
+    <td class="tg-8koo" colspan="2">
+	<fieldset>
+    <input id ="cell_13_0_0" type="checkbox">
+	<label for="cell_13_0_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_13_0_0.click()}">
+	<div class="img_exp">
+        <div class="content">
+            120000
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-jxkc" colspan="2">
+	<fieldset>
+    <input id ="cell_13_1_0" type="checkbox">
+	<label for="cell_13_1_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_13_1_0.click()}">
+	<div class="img_gold">
+        <div class="content">
+            60000
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-i5bc">
+	<fieldset>
+    <input id ="cell_14_0_0" type="checkbox">
+	<label for="cell_14_0_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_0_0.click()}">
+	<div class="img_low_dream_strone">
+        <div class="content">
+            18
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-olp2">
+	<fieldset>
+    <input id ="cell_14_1_0" type="checkbox">
+	<label for="cell_14_1_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_1_0.click()}">
+	<div class="img_option_change_stone">
+        <div class="content">
+            2
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-krke">
+	<fieldset>
+    <input id ="cell_14_2_0" type="checkbox">
+	<label for="cell_14_2_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_2_0.click()}">
+	<div class="img_marina">
+        <div class="content">
+            10
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-7rbb">
+	<fieldset>
+    <input id ="cell_14_3_0" type="checkbox">
+	<label for="cell_14_3_0" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_3_0.click()}">
+	<div class="img_legend_stone">
+        <div class="content">
+            3
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-i5bc">
+	<fieldset>
+    <input id ="cell_14_0_1" type="checkbox">
+	<label for="cell_14_0_1" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_0_1.click()}">
+	<div class="img_middle_dream_stone">
+        <div class="content">
+            12
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-olp2">
+	<fieldset>
+    <input id ="cell_14_1_1" type="checkbox">
+	<label for="cell_14_1_1" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_1_1.click()}">
+	<div class="img_ogma">
+        <div class="content">
+            10
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-krke">
+	<fieldset>
+    <input id ="cell_14_2_1" type="checkbox">
+	<label for="cell_14_2_1" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_2_1.click()}">
+	<div class="img_marina">
+        <div class="content">
+            20
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-7rbb">
+	<fieldset>
+    <input id ="cell_14_3_1" type="checkbox">
+	<label for="cell_14_3_1" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_3_1.click()}">
+	<div class="img_legend_stone">
+        <div class="content">
+            3
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+  </tr>
+ <tr>
+    <td class="tg-i5bc">
+	<fieldset>
+    <input id ="cell_14_0_2" type="checkbox">
+	<label for="cell_14_0_2" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_0_2.click()}">
+	<div class="img_high_dream_stone">
+        <div class="content">
+            6
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-olp2">
+	<fieldset>
+    <input id ="cell_14_1_2" type="checkbox">
+	<label for="cell_14_1_2" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_1_2.click()}">
+	<div class="img_ogma">
+        <div class="content">
+            20
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-krke">
+	<fieldset>
+    <input id ="cell_14_2_2" type="checkbox">
+	<label for="cell_14_2_2" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_2_2.click()}">
+	<div class="img_marina">
+        <div class="content">
+            30
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-7rbb">
+	<fieldset>
+    <input id ="cell_14_3_2" type="checkbox">
+	<label for="cell_14_3_2" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_3_2.click()}">
+	<div class="img_legend_stone">
+        <div class="content">
+            3
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+  </tr>
+  <tr>
+    <td class="tg-i5bc">
+	<fieldset>
+    <input id ="cell_14_0_3" type="checkbox">
+	<label for="cell_14_0_3" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_0_3.click()}">
+	<div class="img_hero_crystal">
+        <div class="content">
+            6
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-olp2">
+	<fieldset>
+    <input id ="cell_14_1_3" type="checkbox">
+	<label for="cell_14_1_3" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_1_3.click()}">
+	<div class="img_ogma">
+        <div class="content">
+            30
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-krke">
+	<fieldset>
+    <input id ="cell_14_2_3" type="checkbox">
+	<label for="cell_14_2_3" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_2_3.click()}">
+	<div class="img_marina">
+        <div class="content">
+            40
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-8jgo"></td>
+  </tr>
+  <tr>
+    <td class="tg-8jgo"></td>
+    <td class="tg-olp2">
+	<fieldset>
+    <input id ="cell_14_1_4" type="checkbox">
+	<label for="cell_14_1_4" onclick="if(navigator.appVersion.indexOf('MSIE')!=-1){cell_14_1_4.click()}">
+	<div class="img_ogma">
+        <div class="content">
+            40
+        </div>
+        <div class="img-cover"></div>
+    </div>
+	</label>
+	</fieldset>
+	</td>
+    <td class="tg-8jgo"></td>
+    <td class="tg-8jgo"></td>
+  </tr>
+</tbody>
+</table>
+
+
 		</form> 
 	</div>
 	<div data-role="footer" data-position="fixed" data-theme="b">
