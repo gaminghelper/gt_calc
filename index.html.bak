@@ -72,7 +72,8 @@
 			window.location = './update_list';
 		})
 		exp_calcButton.addEventListener("click", function(){
-			window.location = './exp_calc';
+			alert('레벨이 71까지 오름에 따라 자료를 모으는 중입니다.');
+			//window.location = './exp_calc';
 		})
 	</script>
 </html>  
